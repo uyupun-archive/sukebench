@@ -22,7 +22,7 @@
     </ul>
     <div class="tab-content">
         <div id="cpu" class="tab-pane active">
-            <p>CPU</p>
+            <h2>CPU</h2>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>物理コア数</th>
@@ -51,7 +51,21 @@
             </table>
         </div>
         <div id="memory" class="tab-pane">
-            <p>Memory</p>
+            <h2>Memory</h2>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>容量</th>
+                    <td>{{ memory_info.total }} GB</td>
+                </tr>
+                <tr>
+                    <th>空き容量</th>
+                    <td>{{ memory_info.available }} GB</td>
+                </tr>
+                <tr>
+                    <th>使用量</th>
+                    <td>{{ memory_info.used }} GB</td>
+                </tr>
+            </table>
         </div>
         <div id="storage" class="tab-pane">
             <p>Storage</p>

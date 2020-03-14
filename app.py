@@ -16,9 +16,17 @@ def fetch_cpu_info():
     }
     return cpu_info
 
+def fetch_memory_info():
+    memory_info = {
+        'total': psutil.virtual_memory().total / 1_000_000_000,
+        'available': psutil.virtual_memory().available / 1_000_000_000,
+        'used': psutil.virtual_memory().used / 1_000_000_000,
+    }
+    return memory_info
+
 @app.route('/')
 def index():
-    return render_template('index.html', cpu_info = fetch_cpu_info())
+    return render_template('index.html', cpu_info = fetch_cpu_info(), memory_info = fetch_memory_info())
 
 if __name__ == '__main__':
     app.run(debug=True)
