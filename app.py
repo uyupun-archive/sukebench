@@ -8,11 +8,11 @@ bootstrap = Bootstrap(app)
 
 def fetch_cpu_info():
     cpu_info = {
+        'use_rate': psutil.cpu_percent(),
+        'load_average': psutil.getloadavg(),
         'real_count': psutil.cpu_count(logical=False),
         'logical_count': psutil.cpu_count(),
-        'use_rate': psutil.cpu_percent(),
         'frequency': psutil.cpu_freq().current / 1000,
-        'load_average': psutil.getloadavg(),
     }
     return cpu_info
 
@@ -34,11 +34,11 @@ def fetch_swap_info():
 
 def fetch_disks_info():
     disks_info = {
-        'partitions': psutil.disk_partitions(),
         'total': psutil.disk_usage(path='/').total / 1_000_000_000,
         'free': psutil.disk_usage(path='/').free / 1_000_000_000,
         'used': psutil.disk_usage(path='/').used / 1_000_000_000,
         'use_rate': psutil.disk_usage(path='/').percent,
+        'partitions': psutil.disk_partitions(),
         'read_count': '{:,d}'.format(psutil.disk_io_counters().read_count),
         'write_count': '{:,d}'.format(psutil.disk_io_counters().write_count),
         'read_bytes': '{:,d}'.format(psutil.disk_io_counters().read_bytes),
