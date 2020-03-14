@@ -46,13 +46,20 @@ def fetch_disks_info():
     }
     return disks_info
 
+def fetch_network_info():
+    network_info = {
+        'interfaces': psutil.net_if_addrs(),
+    }
+    return network_info
+
 @app.route('/')
 def index():
     return render_template('index.html',
                            cpu_info = fetch_cpu_info(),
                            memory_info = fetch_memory_info(),
                            swap_info = fetch_swap_info(),
-                           disks_info = fetch_disks_info())
+                           disks_info = fetch_disks_info(),
+                           network_info = fetch_network_info())
 
 if __name__ == '__main__':
     app.run(debug=True)

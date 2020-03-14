@@ -140,7 +140,42 @@
             </table>
         </div>
         <div id="network" class="tab-pane">
-            <p>Network</p>
+            <h2>Network</h2>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>インタフェース</th>
+                    <td>
+                        <ul>
+                            {% for interface, other_info in network_info.interfaces.items() %}
+                            <li>インタフェース: {{ interface }}</li>
+                            {% for info in other_info %}
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>アドレスファミリー</th>
+                                    <td>{{ info.family }}</td>
+                                <tr>
+                                    <th>アドレス</th>
+                                    <td>{{ info.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ネットマスク</th>
+                                    <td>{{ info.netmask }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ブロードキャスト</th>
+                                    <td>{{ info.broadcast }}</td>
+                                </tr>
+                                <tr>
+                                    <th>VPN</th>
+                                    <td>{{ info.ptp }}</td>
+                                </tr>
+                            </table>
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 </div>
