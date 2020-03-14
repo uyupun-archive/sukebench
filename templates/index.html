@@ -4,8 +4,36 @@
 
 {% block content %}
 
-<div>
+<div class="container">
     <h1>SUKESUKE MIRUMIRU</h1>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a href="#cpu" class="nav-link active" data-toggle="tab">CPU</a>
+        </li>
+        <li class="nav-item">
+            <a href="#memory" class="nav-link" data-toggle="tab">Memory</a>
+        </li>
+        <li class="nav-item">
+            <a href="#storage" class="nav-link" data-toggle="tab">Storage</a>
+        </li>
+        <li class="nav-item">
+            <a href="#network" class="nav-link" data-toggle="tab">Network</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div id="cpu" class="tab-pane active">
+            <p>CPU</p>
+        </div>
+        <div id="memory" class="tab-pane">
+            <p>Memory</p>
+        </div>
+        <div id="storage" class="tab-pane">
+            <p>Storage</p>
+        </div>
+        <div id="network" class="tab-pane">
+            <p>Network</p>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
