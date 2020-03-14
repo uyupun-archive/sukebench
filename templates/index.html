@@ -23,6 +23,32 @@
     <div class="tab-content">
         <div id="cpu" class="tab-pane active">
             <p>CPU</p>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>物理コア数</th>
+                    <td>{{ cpu_info.real_count }}</td>
+                </tr>
+                <tr>
+                    <th>論理コア数</th>
+                    <td>{{ cpu_info.logical_count }}</td>
+                </tr>
+                <tr>
+                    <th>使用率</th>
+                    <td>{{ cpu_info.use_rate }} %</td>
+                </tr>
+                <tr>
+                    <th>クロック周波数</th>
+                    <td>{{ cpu_info.frequency }} GHz</td>
+                </tr>
+                <tr>
+                    <th>ロードアベレージ</th>
+                    <td>
+                        <span>{{ cpu_info.load_average[0] }}（過去１分）,</span>
+                        <span>{{ cpu_info.load_average[1] }}（過去５分）,</span>
+                        <span>{{ cpu_info.load_average[2] }}（過去15分）</span>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div id="memory" class="tab-pane">
             <p>Memory</p>
