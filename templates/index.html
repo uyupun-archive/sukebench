@@ -17,7 +17,7 @@
             <a href="#swap" class="nav-link" data-toggle="tab">Swap</a>
         </li>
         <li class="nav-item">
-            <a href="#storage" class="nav-link" data-toggle="tab">Storage</a>
+            <a href="#disks" class="nav-link" data-toggle="tab">Disks</a>
         </li>
         <li class="nav-item">
             <a href="#network" class="nav-link" data-toggle="tab">Network</a>
@@ -87,8 +87,57 @@
                 </tr>
             </table>
         </div>
-        <div id="storage" class="tab-pane">
-            <p>Storage</p>
+        <div id="disks" class="tab-pane">
+            <h2>Disks</h2>
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>パーティション</th>
+                    <td>
+                        <ul>
+                            {% for partition in disks_info.partitions %}
+                            <li>
+                                <ul>
+                                    <li>デバイス: {{ partition.device }}</li>
+                                    <li>マウントポイント: {{ partition.mountpoint }}</li>
+                                    <li>ファイルシステム: {{ partition.fstype }}</li>
+                                    <li>オプション: {{ partition.opts }}</li>
+                                </ul>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <th>容量（/）</th>
+                    <td>{{ disks_info.total }} GB</td>
+                </tr>
+                <tr>
+                    <th>空き容量（/）</th>
+                    <td>{{ disks_info.free }} GB</td>
+                </tr>
+                <tr>
+                    <th>使用量（/）</th>
+                    <td>{{ disks_info.used }} GB</td>
+                </tr>
+                <tr>
+                    <th>使用率（/）</th>
+                    <td>{{ disks_info.use_rate }} %</td>
+                </tr>
+                <tr>
+                    <th>読み込み</th>
+                    <td>
+                        <span>{{ disks_info.read_count }} 回,</span>
+                        <span>{{ disks_info.read_bytes }} B</span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>書き込み</th>
+                    <td>
+                        <span>{{ disks_info.write_count }} 回,</span>
+                        <span>{{ disks_info.write_bytes }} B</span>
+                    </td>
+                </tr>
+            </table>
         </div>
         <div id="network" class="tab-pane">
             <p>Network</p>
