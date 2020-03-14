@@ -24,9 +24,17 @@ def fetch_memory_info():
     }
     return memory_info
 
+def fetch_swap_info():
+    swap_info = {
+        'total': psutil.swap_memory().total / 1_000_000_000,
+        'free': psutil.swap_memory().free / 1_000_000_000,
+        'used': psutil.swap_memory().used / 1_000_000_000,
+    }
+    return swap_info
+
 @app.route('/')
 def index():
-    return render_template('index.html', cpu_info = fetch_cpu_info(), memory_info = fetch_memory_info())
+    return render_template('index.html', cpu_info = fetch_cpu_info(), memory_info = fetch_memory_info(), swap_info = fetch_swap_info())
 
 if __name__ == '__main__':
     app.run(debug=True)
