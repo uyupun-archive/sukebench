@@ -91,6 +91,22 @@
             <h2>Disks</h2>
             <table class="table table-bordered table-striped">
                 <tr>
+                    <th>容量（/）</th>
+                    <td>{{ disks_info.total }} GB</td>
+                </tr>
+                <tr>
+                    <th>空き容量（/）</th>
+                    <td>{{ disks_info.free }} GB</td>
+                </tr>
+                <tr>
+                    <th>使用量（/）</th>
+                    <td>{{ disks_info.used }} GB</td>
+                </tr>
+                <tr>
+                    <th>使用率（/）</th>
+                    <td>{{ disks_info.use_rate }} %</td>
+                </tr>
+                <tr>
                     <th>パーティション</th>
                     <td>
                         <ul>
@@ -106,22 +122,6 @@
                             {% endfor %}
                         </ul>
                     </td>
-                </tr>
-                <tr>
-                    <th>容量（/）</th>
-                    <td>{{ disks_info.total }} GB</td>
-                </tr>
-                <tr>
-                    <th>空き容量（/）</th>
-                    <td>{{ disks_info.free }} GB</td>
-                </tr>
-                <tr>
-                    <th>使用量（/）</th>
-                    <td>{{ disks_info.used }} GB</td>
-                </tr>
-                <tr>
-                    <th>使用率（/）</th>
-                    <td>{{ disks_info.use_rate }} %</td>
                 </tr>
                 <tr>
                     <th>読み込み（/）</th>
