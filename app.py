@@ -48,6 +48,15 @@ def fetch_disks_info():
 
 def fetch_network_info():
     network_info = {
+        'bytes_sent': '{:,d}'.format(psutil.net_io_counters().bytes_sent),
+        'bytes_recv': '{:,d}'.format(psutil.net_io_counters().bytes_recv),
+        'packets_sent': '{:,d}'.format(psutil.net_io_counters().packets_sent),
+        'packets_recv': '{:,d}'.format(psutil.net_io_counters().packets_recv),
+        'errin': '{:,d}'.format(psutil.net_io_counters().errin),
+        'errout': '{:,d}'.format(psutil.net_io_counters().errout),
+        'dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
+        'dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
+        'connections': psutil.net_connections(),
         'interfaces': psutil.net_if_addrs(),
     }
     return network_info

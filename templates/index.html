@@ -151,6 +151,59 @@
             <h2>Network</h2>
             <table class="table table-bordered table-striped">
                 <tr>
+                    <th>送信</th>
+                    <td>{{ network_info.bytes_sent }} B / {{ network_info.packets_sent }} パケット</td>
+                </tr>
+                <tr>
+                    <th>受信</th>
+                    <td>{{ network_info.bytes_recv }} B / {{ network_info.packets_recv }} パケット</td>
+                </tr>
+                <tr>
+                    <th>エラー</th>
+                    <td>イン: {{ network_info.errin }} / アウト: {{ network_info.errout }}</td>
+                </tr>
+                <tr>
+                    <th>ドロップ</th>
+                    <td>イン: {{ network_info.dropin }} / アウト: {{ network_info.dropout }}</td>
+                </tr>
+                <tr>
+                    <th>コネクション</th>
+                    <td>
+                        {% for connection in network_info.connections %}
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>ファイルディスクリプタ</th>
+                                <td>{{ connection.fd }}</td>
+                            </tr>
+                            <tr>
+                                <th>アドレスファミリー</th>
+                                <td>{{ connection.family }}</td>
+                            </tr>
+                            <tr>
+                                <th>アドレスタイプ</th>
+                                <td>{{ connection.type }}</td>
+                            </tr>
+                            <tr>
+                                <th>ローカルアドレス</th>
+                                <td>IP: {{ connection.laddr.ip }} / ポート: {{ connection.laddr.port }}</td>
+                            </tr>
+                            <tr>
+                                <th>リモートアドレス</th>
+                                <td>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</td>
+                            </tr>
+                            <tr>
+                                <th>ステータス</th>
+                                <td>{{ connection.status }}</td>
+                            </tr>
+                            <tr>
+                                <th>プロセスID</th>
+                                <td>{{ connection.pid }}</td>
+                            </tr>
+                        </table>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
                     <th>インタフェース</th>
                     <td>
                         <ul>
