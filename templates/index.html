@@ -43,9 +43,9 @@
                 <tr>
                     <th>ロードアベレージ</th>
                     <td>
-                        <span>{{ cpu_info.load_average[0] }}（過去１分）/</span>
-                        <span>{{ cpu_info.load_average[1] }}（過去５分）/</span>
-                        <span>{{ cpu_info.load_average[2] }}（過去15分）</span>
+                        <span>過去１分: {{ cpu_info.load_average[0] }} /</span>
+                        <span>過去５分: {{ cpu_info.load_average[1] }} /</span>
+                        <span>過去15分: {{ cpu_info.load_average[2] }}</span>
                     </td>
                 </tr>
                 <tr>
@@ -196,11 +196,23 @@
                                 </tr>
                                 <tr>
                                     <th>ブロードキャスト</th>
-                                    <td>{{ addr.broadcast }}</td>
+                                    <td>
+                                        {% if addr.broadcast is none %}
+                                        <span>-</span>
+                                        {% else %}
+                                        <span>{{ addr.broadcast }}</span>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>VPN</th>
-                                    <td>{{ addr.ptp }}</td>
+                                    <td>
+                                        {% if addr.ptp is none %}
+                                        <span>-</span>
+                                        {% else %}
+                                        <span>{{ addr.ptp }}</span>
+                                        {% endif %}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>NIC</th>
@@ -248,7 +260,13 @@
                 </tr>
                 <tr>
                     <th>リモートアドレス</th>
-                    <td>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</td>
+                    <td>
+                        {% if connection.raddr %}
+                        <span>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</span>
+                        {% else %}
+                        <span>-</span>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <th>ステータス</th>
@@ -296,14 +314,20 @@
                             </tr>
                             <tr>
                                 <th>ホスト</th>
-                                <td>{{ user.host }}</td>
+                                <td>
+                                    {% if user.host is none %}
+                                    <span>-</span>
+                                    {% else %}
+                                    <span>{{ user.host }}</span>
+                                    {% endif %}
+                                </td>
                             </tr>
                             <tr>
-                                <th>作成日</th>
+                                <th>作成日時</th>
                                 <td>{{ user.started }}</td>
                             </tr>
                             <tr>
-                                <th>ログインプロセス</th>
+                                <th>ログインプロセスID</th>
                                 <td>{{ user.pid }}</td>
                             </tr>
                         </table>
@@ -319,7 +343,7 @@
                     <td>{{ device_info.battery_power_plugged }}</td>
                 </tr>
                 <tr>
-                    <th>起動時間</th>
+                    <th>起動日時</th>
                     <td>{{ device_info.boot_time }}</td>
                 </tr>
                 <tr>
