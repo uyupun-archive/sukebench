@@ -1,4 +1,4 @@
-import psutil
+import psutil, datetime
 
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
@@ -70,9 +70,11 @@ def fetch_network_info():
 def fetch_device_info():
     # sensors_temperatures, sensors_fans はmacOS環境では取れず
     device_info = {
+        'users': psutil.users(),
         'battery_percent': psutil.sensors_battery().percent,
         'battery_secleft': sec2hours(psutil.sensors_battery().secsleft),
         'battery_power_plugged': psutil.sensors_battery().power_plugged,
+        'boot_time': datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y/%m/%d %H:%M:%S"),
     }
     return device_info
 

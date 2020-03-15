@@ -23,7 +23,7 @@
             <a href="#network" class="nav-link" data-toggle="tab">Network</a>
         </li>
         <li class="nav-item">
-            <a href="#other" class="nav-link" data-toggle="tab">Other</a>
+            <a href="#others" class="nav-link" data-toggle="tab">Others</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -257,15 +257,49 @@
                 </tr>
             </table>
         </div>
-        <div id="other" class="tab-pane">
+        <div id="others" class="tab-pane">
+            <h2>Others</h2>
             <table class="table table-bordered table-striped">
                 <tr>
+                    <th>ユーザー</th>
+                    <td>
+                        {% for user in device_info.users %}
+                        <table class="table table-bordered table-striped">
+                            <tr>
+                                <th>ユーザー名</th>
+                                <td>{{ user.name }}</td>
+                            </tr>
+                            <tr>
+                                <th>端末</th>
+                                <td>{{ user.terminal }}</td>
+                            </tr>
+                            <tr>
+                                <th>ホスト</th>
+                                <td>{{ user.host }}</td>
+                            </tr>
+                            <tr>
+                                <th>作成日</th>
+                                <td>{{ user.started }}</td>
+                            </tr>
+                            <tr>
+                                <th>ログインプロセス</th>
+                                <td>{{ user.pid }}</td>
+                            </tr>
+                        </table>
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
                     <th>バッテリー残量</th>
-                    <td>{{ device_info.battery_percent }} % （残り: {{ device_info.battery_secleft }}）</td>
+                    <td>{{ device_info.battery_percent }} % （残り {{ device_info.battery_secleft }}）</td>
                 </tr>
                 <tr>
                     <th>充電</th>
                     <td>{{ device_info.battery_power_plugged }}</td>
+                </tr>
+                <tr>
+                    <th>起動時間</th>
+                    <td>{{ device_info.boot_time }}</td>
                 </tr>
             </table>
         </div>
