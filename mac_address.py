@@ -1,4 +1,4 @@
-import subprocess, re
+import subprocess, shutil, re, traceback
 
 class MacAddress:
     def __init__(self):
@@ -19,7 +19,14 @@ class MacAddress:
         return mac_addresses
 
     def __exec_ip_address_cmd(self):
-        return subprocess.run(['ip', 'address'], stdout = subprocess.PIPE, stderr = subprocess.PIPE).stdout.decode('utf8').split('\n')
+        try:
+            if (not shutil.which('ip')):
+                raise Exception('ip: command not found')
+        except Exception as e:
+            print(e)
+            exit()
+        else:
+            return subprocess.run(['ip', 'address'], stdout = subprocess.PIPE, stderr = subprocess.PIPE).stdout.decode('utf8').split('\n')
 
 if __name__ == '__main__':
     mac_addresses = MacAddress().mac_addresses
