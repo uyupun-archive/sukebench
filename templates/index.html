@@ -23,6 +23,9 @@
             <a href="#network" class="nav-link" data-toggle="tab">Network</a>
         </li>
         <li class="nav-item">
+            <a href="#network-con" class="nav-link" data-toggle="tab">Network(Con)</a>
+        </li>
+        <li class="nav-item">
             <a href="#others" class="nav-link" data-toggle="tab">Others</a>
         </li>
     </ul>
@@ -218,44 +221,42 @@
                         </ul>
                     </td>
                 </tr>
+            </table>
+        </div>
+        <div id="network-con" class="tab-pane">
+            <h2>Network connections</h2>
+            {% for connection in network_info.connections %}
+            <table class="table table-bordered table-striped">
                 <tr>
-                    <th>コネクション</th>
-                    <td>
-                        {% for connection in network_info.connections %}
-                        <table class="table table-bordered table-striped">
-                            <tr>
-                                <th>ファイルディスクリプタ</th>
-                                <td>{{ connection.fd }}</td>
-                            </tr>
-                            <tr>
-                                <th>アドレスファミリー</th>
-                                <td>{{ connection.family }}</td>
-                            </tr>
-                            <tr>
-                                <th>アドレスタイプ</th>
-                                <td>{{ connection.type }}</td>
-                            </tr>
-                            <tr>
-                                <th>ローカルアドレス</th>
-                                <td>IP: {{ connection.laddr.ip }} / ポート: {{ connection.laddr.port }}</td>
-                            </tr>
-                            <tr>
-                                <th>リモートアドレス</th>
-                                <td>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</td>
-                            </tr>
-                            <tr>
-                                <th>ステータス</th>
-                                <td>{{ connection.status }}</td>
-                            </tr>
-                            <tr>
-                                <th>プロセスID</th>
-                                <td>{{ connection.pid }}</td>
-                            </tr>
-                        </table>
-                        {% endfor %}
-                    </td>
+                    <th>ファイルディスクリプタ</th>
+                    <td>{{ connection.fd }}</td>
+                </tr>
+                <tr>
+                    <th>アドレスファミリー</th>
+                    <td>{{ connection.family }}</td>
+                </tr>
+                <tr>
+                    <th>アドレスタイプ</th>
+                    <td>{{ connection.type }}</td>
+                </tr>
+                <tr>
+                    <th>ローカルアドレス</th>
+                    <td>IP: {{ connection.laddr.ip }} / ポート: {{ connection.laddr.port }}</td>
+                </tr>
+                <tr>
+                    <th>リモートアドレス</th>
+                    <td>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</td>
+                </tr>
+                <tr>
+                    <th>ステータス</th>
+                    <td>{{ connection.status }}</td>
+                </tr>
+                <tr>
+                    <th>プロセスID</th>
+                    <td>{{ connection.pid }}</td>
                 </tr>
             </table>
+            {% endfor %}
         </div>
         <div id="others" class="tab-pane">
             <h2>Others</h2>
