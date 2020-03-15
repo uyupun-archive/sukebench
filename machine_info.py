@@ -1,4 +1,4 @@
-import psutil, datetime
+import psutil, platform, datetime
 
 class MachineInfo:
     @staticmethod
@@ -79,7 +79,8 @@ class MachineInfo:
     def fetch_device_info(cls):
         # sensors_temperatures, sensors_fans はmacOS環境では取れず
         device_info = {
-            'procs': psutil.process_iter(['pid', 'name', 'username']),
+            'platform_name': platform.system(),
+            'platform_version': platform.release(),
             'users': psutil.users(),
             'battery_percent': psutil.sensors_battery().percent,
             'battery_secleft': cls.sec2hours(psutil.sensors_battery().secsleft),
