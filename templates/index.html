@@ -26,7 +26,10 @@
             <a href="#network-con" class="nav-link" data-toggle="tab">Network(Con)</a>
         </li>
         <li class="nav-item">
-            <a href="#others" class="nav-link" data-toggle="tab">Others</a>
+            <a href="#processes" class="nav-link" data-toggle="tab">Processes</a>
+        </li>
+        <li class="nav-item">
+            <a href="#devices" class="nav-link" data-toggle="tab">Devices</a>
         </li>
     </ul>
     <div class="tab-content">
@@ -258,8 +261,27 @@
             </table>
             {% endfor %}
         </div>
-        <div id="others" class="tab-pane">
-            <h2>Others</h2>
+        <div id="processes" class="tab-pane">
+            <h2>Processes</h2>
+            {% for proc in procs_info.procs %}
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>プロセスID</th>
+                    <td>{{ proc.info.pid }}</td>
+                </tr>
+                <tr>
+                    <th>プロセス名</th>
+                    <td>{{ proc.info.name }}</td>
+                </tr>
+                <tr>
+                    <th>実行ユーザー</th>
+                    <td>{{ proc.info.username }}</td>
+                </tr>
+            </table>
+            {% endfor %}
+        </div>
+        <div id="devices" class="tab-pane">
+            <h2>Devices</h2>
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>ユーザー</th>

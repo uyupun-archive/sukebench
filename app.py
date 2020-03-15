@@ -67,9 +67,16 @@ def fetch_network_info():
     }
     return network_info
 
+def fetch_procs_info():
+    procs_info = {
+        'procs': psutil.process_iter(['pid', 'name', 'username']),
+    }
+    return procs_info
+
 def fetch_device_info():
     # sensors_temperatures, sensors_fans はmacOS環境では取れず
     device_info = {
+        'procs': psutil.process_iter(['pid', 'name', 'username']),
         'users': psutil.users(),
         'battery_percent': psutil.sensors_battery().percent,
         'battery_secleft': sec2hours(psutil.sensors_battery().secsleft),
@@ -86,6 +93,7 @@ def index():
                            swap_info = fetch_swap_info(),
                            disks_info = fetch_disks_info(),
                            network_info = fetch_network_info(),
+                           procs_info = fetch_procs_info(),
                            device_info = fetch_device_info())
 
 if __name__ == '__main__':
