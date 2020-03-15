@@ -6,6 +6,11 @@ from flask_bootstrap import Bootstrap
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
 
+def sec2hours(secs):
+    mm, ss = divmod(secs, 60)
+    hh, mm = divmod(mm, 60)
+    return '%d:%02d:%02d' % (hh, mm, ss)
+
 def fetch_cpu_info():
     cpu_info = {
         'use_rate': psutil.cpu_percent(),
@@ -62,6 +67,15 @@ def fetch_network_info():
     }
     return network_info
 
+def fetch_device_info():
+    # sensors_temperatures, sensors_fans はmacOS環境では取れず
+    device_info = {
+        'battery_percent': psutil.sensors_battery().percent,
+        'battery_secleft': sec2hours(psutil.sensors_battery().secsleft),
+        'battery_power_plugged': psutil.sensors_battery().power_plugged,
+    }
+    return device_info
+
 @app.route('/')
 def index():
     return render_template('index.html',
@@ -69,7 +83,8 @@ def index():
                            memory_info = fetch_memory_info(),
                            swap_info = fetch_swap_info(),
                            disks_info = fetch_disks_info(),
-                           network_info = fetch_network_info())
+                           network_info = fetch_network_info(),
+                           device_info = fetch_device_info())
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -22,6 +22,9 @@
         <li class="nav-item">
             <a href="#network" class="nav-link" data-toggle="tab">Network</a>
         </li>
+        <li class="nav-item">
+            <a href="#other" class="nav-link" data-toggle="tab">Other</a>
+        </li>
     </ul>
     <div class="tab-content">
         <div id="cpu" class="tab-pane active">
@@ -251,6 +254,18 @@
                         </table>
                         {% endfor %}
                     </td>
+                </tr>
+            </table>
+        </div>
+        <div id="other" class="tab-pane">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>バッテリー残量</th>
+                    <td>{{ device_info.battery_percent }} % （残り: {{ device_info.battery_secleft }}）</td>
+                </tr>
+                <tr>
+                    <th>充電</th>
+                    <td>{{ device_info.battery_power_plugged }}</td>
                 </tr>
             </table>
         </div>
