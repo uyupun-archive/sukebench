@@ -57,7 +57,8 @@ def fetch_network_info():
         'dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
         'dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
         'connections': psutil.net_connections(),
-        'interfaces': psutil.net_if_addrs(),
+        'addrs': psutil.net_if_addrs(),
+        'stats': psutil.net_if_stats(),
     }
     return network_info
 

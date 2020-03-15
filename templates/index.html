@@ -167,6 +167,55 @@
                     <td>イン: {{ network_info.dropin }} / アウト: {{ network_info.dropout }}</td>
                 </tr>
                 <tr>
+                    <th>インタフェース</th>
+                    <td>
+                        <ul>
+                            {% for key in network_info.addrs.keys() %}
+                            <li>インタフェース: {{ key }}</li>
+                            {% for addr in network_info.addrs[key] %}
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>アドレスファミリー</th>
+                                    <td>{{ addr.family }}</td>
+                                <tr>
+                                    <th>アドレス</th>
+                                    <td>{{ addr.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ネットマスク</th>
+                                    <td>{{ addr.netmask }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ブロードキャスト</th>
+                                    <td>{{ addr.broadcast }}</td>
+                                </tr>
+                                <tr>
+                                    <th>VPN</th>
+                                    <td>{{ addr.ptp }}</td>
+                                </tr>
+                                <tr>
+                                    <th>NIC</th>
+                                    <td>{{ network_info.stats[key].isup }}</td>
+                                </tr>
+                                <tr>
+                                    <th>通信方式</th>
+                                    <td>{{ network_info.stats[key].duplex }}</td>
+                                </tr>
+                                <tr>
+                                    <th>速度</th>
+                                    <td>{{ network_info.stats[key].speed }}</td>
+                                </tr>
+                                <tr>
+                                    <th>MTU</th>
+                                    <td>{{ network_info.stats[key].mtu }}</td>
+                                </tr>
+                            </table>
+                            {% endfor %}
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
                     <th>コネクション</th>
                     <td>
                         {% for connection in network_info.connections %}
@@ -201,39 +250,6 @@
                             </tr>
                         </table>
                         {% endfor %}
-                    </td>
-                </tr>
-                <tr>
-                    <th>インタフェース</th>
-                    <td>
-                        <ul>
-                            {% for interface, other_info in network_info.interfaces.items() %}
-                            <li>インタフェース: {{ interface }}</li>
-                            {% for info in other_info %}
-                            <table class="table table-bordered table-striped">
-                                <tr>
-                                    <th>アドレスファミリー</th>
-                                    <td>{{ info.family }}</td>
-                                <tr>
-                                    <th>アドレス</th>
-                                    <td>{{ info.address }}</td>
-                                </tr>
-                                <tr>
-                                    <th>ネットマスク</th>
-                                    <td>{{ info.netmask }}</td>
-                                </tr>
-                                <tr>
-                                    <th>ブロードキャスト</th>
-                                    <td>{{ info.broadcast }}</td>
-                                </tr>
-                                <tr>
-                                    <th>VPN</th>
-                                    <td>{{ info.ptp }}</td>
-                                </tr>
-                            </table>
-                            {% endfor %}
-                            {% endfor %}
-                        </ul>
                     </td>
                 </tr>
             </table>
