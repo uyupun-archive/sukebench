@@ -263,22 +263,20 @@
         </div>
         <div id="processes" class="tab-pane">
             <h2>Processes</h2>
-            {% for proc in procs_info.procs %}
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>プロセスID</th>
-                    <td>{{ proc.info.pid }}</td>
-                </tr>
-                <tr>
                     <th>プロセス名</th>
-                    <td>{{ proc.info.name }}</td>
-                </tr>
-                <tr>
                     <th>実行ユーザー</th>
+                </tr>
+                {% for proc in procs_info.procs %}
+                <tr>
+                    <td>{{ proc.info.pid }}</td>
+                    <td>{{ proc.info.name }}</td>
                     <td>{{ proc.info.username }}</td>
                 </tr>
+                {% endfor %}
             </table>
-            {% endfor %}
         </div>
         <div id="devices" class="tab-pane">
             <h2>Devices</h2>
