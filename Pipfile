@@ -10,6 +10,7 @@ pylint = "*"
 flask = "*"
 flask-bootstrap = "*"
 psutil = "*"
+mac-vendor-lookup = "*"
 
 [requires]
 python_version = "3.7"
