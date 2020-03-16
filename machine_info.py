@@ -1,4 +1,6 @@
-import psutil, platform, datetime
+import psutil, platform, datetime, asyncio
+
+from lib.mac_addresses import MacAddresses
 
 class MachineInfo:
     @staticmethod
@@ -53,6 +55,8 @@ class MachineInfo:
 
     @classmethod
     def fetch_network_info(cls):
+        asyncio.set_event_loop(asyncio.new_event_loop())
+        mac_addresses = MacAddresses()
         network_info = {
             'bytes_sent': '{:,d}'.format(psutil.net_io_counters().bytes_sent),
             'bytes_recv': '{:,d}'.format(psutil.net_io_counters().bytes_recv),
@@ -63,7 +67,8 @@ class MachineInfo:
             'dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
             'dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
             'connections': psutil.net_connections(),
-            'addrs': psutil.net_if_addrs(),
+            'logical_addrs': psutil.net_if_addrs(),
+            'physical_addrs': mac_addresses(),
             'stats': psutil.net_if_stats(),
         }
         return network_info
@@ -88,3 +93,11 @@ class MachineInfo:
             'boot_time': datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y/%m/%d %H:%M:%S"),
         }
         return device_info
+
+if __name__ == '__main__':
+    print(MachineInfo.fetch_cpu_info())
+    print(MachineInfo.fetch_memory_info())
+    print(MachineInfo.fetch_swap_info())
+    print(MachineInfo.fetch_disks_info())
+    print(MachineInfo.fetch_procs_info())
+    print(MachineInfo.fetch_device_info())

@@ -1,4 +1,4 @@
-import subprocess, shutil, re, traceback, asyncio
+import asyncio, ifcfg
 
 from mac_vendor_lookup import MacLookup, AsyncMacLookup
 
@@ -17,35 +17,16 @@ class MacAddresses:
     def __call__(self):
         return self.__mac_addresses
 
-    # MACアドレスの取得と整形
+    # MACアドレスの取得
     def __fetch_mac_addresses(self):
-        interfaces = self.__exec_ip_address_cmd()
         mac_addresses = {}
-        for interface in interfaces:
-            if re.fullmatch(r'[a-zA-Z0-9]+:\s.+$', interface):
-                interface_name = re.findall(r'[a-zA-Z0-9]+', interface)[0]
-                mac_addresses[interface_name] = {
-                    'address': None,
-                    'vendor': None,
-                }
-            elif re.fullmatch(r'\tether.+$', interface):
-                address = re.findall(r'[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}:[0-9a-f]{2}', interface)[0]
-                mac_addresses[interface_name] = {
-                    'address': address,
-                    'vendor': self.__lookup_org_by_mac_address(address),
-                }
+        for name, interface in ifcfg.interfaces().items():
+            address = interface['ether']
+            mac_addresses[name] = {
+                'address': address,
+                'vendor': self.__lookup_org_by_mac_address(address) if address is not None else None,
+            }
         return mac_addresses
-
-    # `ip address` コマンドを実行する
-    def __exec_ip_address_cmd(self):
-        try:
-            if (not shutil.which('ip')):
-                raise IpCommandNotFoundException('ip: command not found')
-        except IpCommandNotFoundException as e:
-            print(e)
-            exit()
-        else:
-            return subprocess.run(['ip', 'address'], stdout = subprocess.PIPE, stderr = subprocess.PIPE).stdout.decode('utf8').split('\n')
 
     # MACアドレスからベンダを照会する
     # mac_vendor_lookupが存在しないMACアドレスを投げると例外吐いて死にやがるのでこういう邪悪なコードになりました

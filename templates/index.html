@@ -179,9 +179,9 @@
                     <th>インタフェース</th>
                     <td>
                         <ul>
-                            {% for key in network_info.addrs.keys() %}
+                            {% for key in network_info.logical_addrs.keys() %}
                             <li>インタフェース: {{ key }}</li>
-                            {% for addr in network_info.addrs[key] %}
+                            {% for addr in network_info.logical_addrs[key] %}
                             <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>アドレスファミリー</th>

@@ -11,6 +11,7 @@ flask = "*"
 flask-bootstrap = "*"
 psutil = "*"
 mac-vendor-lookup = "*"
+ifcfg = "*"
 
 [requires]
 python_version = "3.7"
