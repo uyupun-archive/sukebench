@@ -2,14 +2,20 @@ import subprocess, shutil, re, traceback, asyncio
 
 from mac_vendor_lookup import MacLookup, AsyncMacLookup
 
-class InvalidMacAddressError(Exception):
+class IpCommandNotFoundException(Exception):
     pass
 
-class MacAddress:
+class InvalidMacAddressException(Exception):
+    pass
+
+class MacAddresses:
     def __init__(self):
-        self.mac_lookup = MacLookup()
-        self.mac_lookup.load_vendors()
-        self.mac_addresses = self.__fetch_mac_addresses()
+        self.__mac_lookup = MacLookup()
+        self.__mac_lookup.load_vendors()
+        self.__mac_addresses = self.__fetch_mac_addresses()
+
+    def __call__(self):
+        return self.__mac_addresses
 
     # MACアドレスの取得と整形
     def __fetch_mac_addresses(self):
@@ -34,8 +40,8 @@ class MacAddress:
     def __exec_ip_address_cmd(self):
         try:
             if (not shutil.which('ip')):
-                raise Exception('ip: command not found')
-        except Exception as e:
+                raise IpCommandNotFoundException('ip: command not found')
+        except IpCommandNotFoundException as e:
             print(e)
             exit()
         else:
@@ -44,8 +50,8 @@ class MacAddress:
     # MACアドレスからベンダを照会する
     # mac_vendor_lookupが存在しないMACアドレスを投げると例外吐いて死にやがるのでこういう邪悪なコードになりました
     def __lookup_org_by_mac_address(self, mac_address):
-        oui = MacAddress.translate_oui(mac_address)
-        return self.mac_lookup.lookup(mac_address) if oui in self.mac_lookup.async_lookup.prefixes else None
+        oui = MacAddresses.translate_oui(mac_address)
+        return self.__mac_lookup.lookup(mac_address) if oui in self.__mac_lookup.async_lookup.prefixes else None
 
     # MACアドレスからOUIを抽出して返す
     @staticmethod
@@ -54,13 +60,13 @@ class MacAddress:
         try:
             int(oui, 16)
         except ValueError:
-            raise InvalidMacAddressError('{} contains unexpected character'.format(mac_address))
+            raise InvalidMacAddressException('{} contains unexpected character'.format(mac_address))
         if len(oui) > 12:
-            raise InvalidMacAddressError('{} is not a valid MAC address (too long)'.format(mac_address))
+            raise InvalidMacAddressException('{} is not a valid MAC address (too long)'.format(mac_address))
         if type(oui) == str:
             oui = oui.encode('utf8')
         return oui[:6]
 
 if __name__ == '__main__':
-    mac_addresses = MacAddress().mac_addresses
-    print(mac_addresses)
+    mac_addresses = MacAddresses()
+    print(mac_addresses())
