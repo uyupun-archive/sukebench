@@ -181,13 +181,23 @@
                         <ul>
                             {% for key in network_info.logical_addrs.keys() %}
                             <li>インタフェース: {{ key }}</li>
+                            <table class="table table-bordered table-striped">
+                                <tr>
+                                    <th>MACアドレス</th>
+                                    <td>{{ network_info.physical_addrs[key].address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>ベンダ</th>
+                                    <td>{{ network_info.physical_addrs[key].vendor }}</td>
+                                </tr>
+                            </table>
                             {% for addr in network_info.logical_addrs[key] %}
                             <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>アドレスファミリー</th>
                                     <td>{{ addr.family }}</td>
                                 <tr>
-                                    <th>アドレス</th>
+                                    <th>IPアドレス</th>
                                     <td>{{ addr.address }}</td>
                                 </tr>
                                 <tr>
