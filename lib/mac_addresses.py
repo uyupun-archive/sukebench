@@ -1,4 +1,4 @@
-import asyncio, ifcfg
+import ifcfg
 
 from mac_vendor_lookup import MacLookup, AsyncMacLookup
 
