@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, render_template
 from flask_bootstrap import Bootstrap
 from machine_info import MachineInfo
 
@@ -15,6 +15,10 @@ def index():
                            network_info = MachineInfo.fetch_network_info(),
                            procs_info = MachineInfo.fetch_procs_info(),
                            device_info = MachineInfo.fetch_device_info())
+
+@app.route('/api/hello')
+def hello():
+    return jsonify({'hello': 'world'})
 
 if __name__ == '__main__':
     app.run(debug=True)
