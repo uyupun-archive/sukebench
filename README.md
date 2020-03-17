@@ -6,6 +6,7 @@
 ```bash
 $ git clone https://github.com/tyokinuhata/sukebench.git
 $ cd sukebench
-$ pipenv install
-$ pipenv run app    // After that, open localhost:5000
+$ make install
+$ make bup    // Starts backend(Flask)
+$ make fup    // Starts frontend(Next.js), After that, open localhost:3000
 ```
