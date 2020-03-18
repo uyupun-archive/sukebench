@@ -38,7 +38,7 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>使用率</th>
-                    <td>{{ cpu_info.use_rate }} %</td>
+                    <td>{{ cpu_info.use_percent }} %</td>
                 </tr>
                 <tr>
                     <th>ロードアベレージ</th>
@@ -50,15 +50,15 @@
                 </tr>
                 <tr>
                     <th>物理コア数</th>
-                    <td>{{ cpu_info.real_count }}</td>
+                    <td>{{ cpu_info.real_core_count }}</td>
                 </tr>
                 <tr>
                     <th>論理コア数</th>
-                    <td>{{ cpu_info.logical_count }}</td>
+                    <td>{{ cpu_info.logical_core_count }}</td>
                 </tr>
                 <tr>
                     <th>クロック周波数</th>
-                    <td>{{ cpu_info.frequency }} GHz</td>
+                    <td>{{ cpu_info.clock_frequency }} GHz</td>
                 </tr>
             </table>
         </div>

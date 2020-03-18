@@ -12,11 +12,11 @@ class MachineInfo:
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
-            'use_rate': psutil.cpu_percent(),
+            'use_percent': psutil.cpu_percent(),
             'load_average': psutil.getloadavg(),
-            'real_count': psutil.cpu_count(logical=False),
-            'logical_count': psutil.cpu_count(),
-            'frequency': psutil.cpu_freq().current / 1000,
+            'real_core_count': psutil.cpu_count(logical=False),
+            'logical_core_count': psutil.cpu_count(),
+            'clock_frequency': psutil.cpu_freq().current / 1000,
         }
         return cpu_info
 

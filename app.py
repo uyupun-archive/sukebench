@@ -18,7 +18,7 @@ def index():
 
 @app.route('/api/cpu')
 def cpu():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_cpu_info())
 
 @app.route('/api/memory')
 def memory():
