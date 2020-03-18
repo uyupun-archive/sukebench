@@ -75,12 +75,16 @@ class MachineInfo:
             'packets_errout': '{:,d}'.format(psutil.net_io_counters().errout),
             'packets_dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
             'packets_dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
-            'connections': psutil.net_connections(),
             'logical_addrs': psutil.net_if_addrs(),
             'physical_addrs': mac_addresses(),
             'stats': psutil.net_if_stats(),
         }
         return network_info
+
+    @classmethod
+    def fetch_network_connections_info(cls):
+        network_connections_info = psutil.net_connections()
+        return network_connections_info
 
     @classmethod
     def fetch_procs_info(cls):

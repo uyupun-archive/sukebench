@@ -13,6 +13,7 @@ def index():
                            swap_info = MachineInfo.fetch_swap_info(),
                            disks_info = MachineInfo.fetch_disks_info(),
                            network_info = MachineInfo.fetch_network_info(),
+                           network_connections_info = MachineInfo.fetch_network_connections_info(),
                            procs_info = MachineInfo.fetch_procs_info(),
                            devices_info = MachineInfo.fetch_devices_info())
 
@@ -34,11 +35,11 @@ def disks():
 
 @app.route('/api/network')
 def network():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_network_info())
 
 @app.route('/api/network/connections')
 def network_connections():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_network_connections_info())
 
 @app.route('/api/procs')
 def procs():
