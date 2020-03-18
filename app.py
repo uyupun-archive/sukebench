@@ -16,6 +16,34 @@ def index():
                            procs_info = MachineInfo.fetch_procs_info(),
                            device_info = MachineInfo.fetch_device_info())
 
+@app.route('/api/cpu')
+def cpu():
+    return jsonify({})
+
+@app.route('/api/memory')
+def memory():
+    return jsonify({})
+
+@app.route('/api/swap')
+def swap():
+    return jsonify({})
+
+@app.route('/api/disks')
+def disks():
+    return jsonify({})
+
+@app.route('/api/network')
+def network():
+    return jsonify({})
+
+@app.route('/api/procs')
+def procs():
+    return jsonify({})
+
+@app.route('/api/devices')
+def devices():
+    return jsonify({})
+
 @app.route('/api/hello')
 def hello():
     return jsonify({'hello': 'world'})
