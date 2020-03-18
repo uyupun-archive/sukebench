@@ -199,32 +199,32 @@
                             <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>アドレスファミリー</th>
-                                    <td>{{ addr.family }}</td>
+                                    <td>{{ addr.address_family }}</td>
                                 <tr>
-                                    <th>IPアドレス</th>
-                                    <td>{{ addr.address }}</td>
+                                    <th>IPアドレス（ユニキャスト）</th>
+                                    <td>{{ addr.ip_address }}</td>
                                 </tr>
                                 <tr>
                                     <th>ネットマスク</th>
                                     <td>{{ addr.netmask }}</td>
                                 </tr>
                                 <tr>
-                                    <th>ブロードキャスト</th>
+                                    <th>ブロードキャストアドレス</th>
                                     <td>
-                                        {% if addr.broadcast is none %}
+                                        {% if addr.broadcast_address is none %}
                                         <span>-</span>
                                         {% else %}
-                                        <span>{{ addr.broadcast }}</span>
+                                        <span>{{ addr.broadcast_address }}</span>
                                         {% endif %}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>VPN</th>
                                     <td>
-                                        {% if addr.ptp is none %}
+                                        {% if addr.vpn is none %}
                                         <span>-</span>
                                         {% else %}
-                                        <span>{{ addr.ptp }}</span>
+                                        <span>{{ addr.vpn }}</span>
                                         {% endif %}
                                     </td>
                                 </tr>

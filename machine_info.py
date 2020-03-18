@@ -33,7 +33,7 @@ class MachineInfo:
                 'address_family': str(settings.family),
                 'ip_address': settings.address,
                 'netmask': settings.netmask,
-                'broadcast': settings.broadcast,
+                'broadcast_address': settings.broadcast,
                 'vpn': settings.ptp,
             }, interface))
         return logical_addrs
