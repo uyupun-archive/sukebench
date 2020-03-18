@@ -312,7 +312,7 @@
                 <tr>
                     <th>ユーザー</th>
                     <td>
-                        {% for user in device_info.users %}
+                        {% for user in devices_info.users %}
                         <table class="table table-bordered table-striped">
                             <tr>
                                 <th>ユーザー名</th>
@@ -346,23 +346,23 @@
                 </tr>
                 <tr>
                     <th>バッテリー残量</th>
-                    <td>{{ device_info.battery_percent }} % （残り {{ device_info.battery_secleft }}）</td>
+                    <td>{{ devices_info.battery_percent }} % （残り {{ devices_info.battery_secleft }}）</td>
                 </tr>
                 <tr>
                     <th>充電</th>
-                    <td>{{ device_info.battery_power_plugged }}</td>
+                    <td>{{ devices_info.battery_power_plugged }}</td>
                 </tr>
                 <tr>
                     <th>起動日時</th>
-                    <td>{{ device_info.boot_time }}</td>
+                    <td>{{ devices_info.boot_time }}</td>
                 </tr>
                 <tr>
                     <th>プラットフォーム</th>
-                    <td>{{ device_info.platform_name }}</td>
+                    <td>{{ devices_info.platform_name }}</td>
                 </tr>
                 <tr>
                     <th>バージョン</th>
-                    <td>{{ device_info.platform_version }}</td>
+                    <td>{{ devices_info.platform_version }}</td>
                 </tr>
             </table>
         </div>

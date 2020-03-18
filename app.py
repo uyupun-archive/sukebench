@@ -14,7 +14,7 @@ def index():
                            disks_info = MachineInfo.fetch_disks_info(),
                            network_info = MachineInfo.fetch_network_info(),
                            procs_info = MachineInfo.fetch_procs_info(),
-                           device_info = MachineInfo.fetch_device_info())
+                           devices_info = MachineInfo.fetch_devices_info())
 
 @app.route('/api/cpu')
 def cpu():

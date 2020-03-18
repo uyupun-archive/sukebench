@@ -81,9 +81,9 @@ class MachineInfo:
         return procs_info
 
     @classmethod
-    def fetch_device_info(cls):
+    def fetch_devices_info(cls):
         # sensors_temperatures, sensors_fans はmacOS環境では取れず
-        device_info = {
+        devices_info = {
             'platform_name': platform.system(),
             'platform_version': platform.release(),
             'users': psutil.users(),
@@ -92,7 +92,7 @@ class MachineInfo:
             'battery_power_plugged': psutil.sensors_battery().power_plugged,
             'boot_time': datetime.datetime.fromtimestamp(psutil.boot_time()).strftime("%Y/%m/%d %H:%M:%S"),
         }
-        return device_info
+        return devices_info
 
 if __name__ == '__main__':
     print(MachineInfo.fetch_cpu_info())
@@ -100,4 +100,4 @@ if __name__ == '__main__':
     print(MachineInfo.fetch_swap_info())
     print(MachineInfo.fetch_disks_info())
     print(MachineInfo.fetch_procs_info())
-    print(MachineInfo.fetch_device_info())
+    print(MachineInfo.fetch_devices_info())
