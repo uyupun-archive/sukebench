@@ -9,6 +9,15 @@ class MachineInfo:
         hh, mm = divmod(mm, 60)
         return '%d:%02d:%02d' % (hh, mm, ss)
 
+    @staticmethod
+    def fmt_disk_partitions_response():
+        return list(map(lambda partition: {
+            'device': partition.device,
+            'mountpoint': partition.mountpoint,
+            'filesystem': partition.fstype,
+            'options': partition.opts.split(','),
+        }, psutil.disk_partitions()))
+
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
@@ -45,7 +54,7 @@ class MachineInfo:
             'free': psutil.disk_usage(path='/').free / 1_000_000_000,
             'used': psutil.disk_usage(path='/').used / 1_000_000_000,
             'use_percent': psutil.disk_usage(path='/').percent,
-            'partitions': psutil.disk_partitions(),
+            'partitions': MachineInfo.fmt_disk_partitions_response(),
             'read_count': '{:,d}'.format(psutil.disk_io_counters().read_count),
             'write_count': '{:,d}'.format(psutil.disk_io_counters().write_count),
             'read_bytes': '{:,d}'.format(psutil.disk_io_counters().read_bytes),

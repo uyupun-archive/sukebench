@@ -130,11 +130,15 @@
                             </tr>
                             <tr>
                                 <th>ファイルシステム</th>
-                                <td>{{ partition.fstype }}</td>
+                                <td>{{ partition.filesystem }}</td>
                             </tr>
                             <tr>
                                 <th>オプション</th>
-                                <td>{{ partition.opts }}</td>
+                                <td>
+                                    {% for option in partition.options %}
+                                    <span>{{ option }}</span>
+                                    {% endfor %}
+                                </td>
                             </tr>
                         </table>
                         {% endfor %}

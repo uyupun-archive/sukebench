@@ -22,15 +22,15 @@ def cpu():
 
 @app.route('/api/memory')
 def memory():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_memory_info())
 
 @app.route('/api/swap')
 def swap():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_swap_info())
 
 @app.route('/api/disks')
 def disks():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_disks_info())
 
 @app.route('/api/network')
 def network():
