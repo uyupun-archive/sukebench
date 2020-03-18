@@ -36,6 +36,10 @@ def disks():
 def network():
     return jsonify({})
 
+@app.route('/api/network/connections')
+def network_connections():
+    return jsonify({})
+
 @app.route('/api/procs')
 def procs():
     return jsonify({})
