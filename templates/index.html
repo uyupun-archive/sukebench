@@ -113,7 +113,7 @@
                 </tr>
                 <tr>
                     <th>使用率（/）</th>
-                    <td>{{ disks_info.use_rate }} %</td>
+                    <td>{{ disks_info.use_percent }} %</td>
                 </tr>
                 <tr>
                     <th>パーティション</th>
@@ -169,11 +169,11 @@
                 </tr>
                 <tr>
                     <th>エラー</th>
-                    <td>イン: {{ network_info.errin }} / アウト: {{ network_info.errout }}</td>
+                    <td>イン: {{ network_info.packets_errin }} / アウト: {{ network_info.packets_errout }}</td>
                 </tr>
                 <tr>
                     <th>ドロップ</th>
-                    <td>イン: {{ network_info.dropin }} / アウト: {{ network_info.dropout }}</td>
+                    <td>イン: {{ network_info.packets_dropin }} / アウト: {{ network_info.packets_dropout }}</td>
                 </tr>
                 <tr>
                     <th>インタフェース</th>
