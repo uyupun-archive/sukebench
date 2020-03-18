@@ -43,9 +43,9 @@
                 <tr>
                     <th>ロードアベレージ</th>
                     <td>
-                        <span>過去１分: {{ cpu_info.load_average[0] }} /</span>
-                        <span>過去５分: {{ cpu_info.load_average[1] }} /</span>
-                        <span>過去15分: {{ cpu_info.load_average[2] }}</span>
+                        <span>過去１分: {{ cpu_info.load_average.last_1_min }} /</span>
+                        <span>過去５分: {{ cpu_info.load_average.last_5_min }} /</span>
+                        <span>過去15分: {{ cpu_info.load_average.last_15_min }}</span>
                     </td>
                 </tr>
                 <tr>

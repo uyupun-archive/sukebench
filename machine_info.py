@@ -10,19 +10,27 @@ class MachineInfo:
         return '%d:%02d:%02d' % (hh, mm, ss)
 
     @staticmethod
-    def fmt_disk_partitions_response():
+    def fmt_load_avarage_response(load_avarage):
+        return {
+            'last_1_min': load_avarage[0],
+            'last_5_min': load_avarage[1],
+            'last_15_min': load_avarage[2],
+        }
+
+    @staticmethod
+    def fmt_disk_partitions_response(disk_partitions):
         return list(map(lambda partition: {
             'device': partition.device,
             'mountpoint': partition.mountpoint,
             'filesystem': partition.fstype,
             'options': partition.opts.split(','),
-        }, psutil.disk_partitions()))
+        }, disk_partitions))
 
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
             'use_percent': psutil.cpu_percent(),
-            'load_average': psutil.getloadavg(),
+            'load_average': MachineInfo.fmt_load_avarage_response(psutil.getloadavg()),
             'real_core_count': psutil.cpu_count(logical=False),
             'logical_core_count': psutil.cpu_count(),
             'clock_frequency': psutil.cpu_freq().current / 1000,
@@ -54,7 +62,7 @@ class MachineInfo:
             'free': psutil.disk_usage(path='/').free / 1_000_000_000,
             'used': psutil.disk_usage(path='/').used / 1_000_000_000,
             'use_percent': psutil.disk_usage(path='/').percent,
-            'partitions': MachineInfo.fmt_disk_partitions_response(),
+            'partitions': MachineInfo.fmt_disk_partitions_response(psutil.disk_partitions()),
             'read_count': '{:,d}'.format(psutil.disk_io_counters().read_count),
             'write_count': '{:,d}'.format(psutil.disk_io_counters().write_count),
             'read_bytes': '{:,d}'.format(psutil.disk_io_counters().read_bytes),
