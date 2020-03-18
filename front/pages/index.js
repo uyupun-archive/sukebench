@@ -45,7 +45,7 @@ const Home = () => (
           <h3>Network</h3>
         </Tab>
 
-        <Tab eventKey="NetworkConnections" title="NetworkConnections" className="p-2">
+        <Tab eventKey="NetworkConnections" title="Network(Con)" className="p-2">
           <h3>Network connections</h3>
         </Tab>
 
