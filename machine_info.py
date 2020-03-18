@@ -26,6 +26,18 @@ class MachineInfo:
             'options': partition.opts.split(','),
         }, disk_partitions))
 
+    @staticmethod
+    def fmt_interfaces_response(logical_addrs):
+        for interface_name, interface in logical_addrs.items():
+            logical_addrs[interface_name] = list(map(lambda settings: {
+                'address_family': str(settings.family),
+                'ip_address': settings.address,
+                'netmask': settings.netmask,
+                'broadcast': settings.broadcast,
+                'vpn': settings.ptp,
+            }, interface))
+        return logical_addrs
+
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
@@ -83,7 +95,7 @@ class MachineInfo:
             'packets_errout': '{:,d}'.format(psutil.net_io_counters().errout),
             'packets_dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
             'packets_dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
-            'logical_addrs': psutil.net_if_addrs(),
+            'logical_addrs': MachineInfo.fmt_interfaces_response(psutil.net_if_addrs()),
             'physical_addrs': mac_addresses(),
             'stats': psutil.net_if_stats(),
         }
