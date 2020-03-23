@@ -64,6 +64,15 @@ class MachineInfo:
         }, network_connections))
         return network_connections
 
+    @staticmethod
+    def fmt_procs_response(procs):
+        procs = list(map(lambda proc: {
+            'pid': proc.info['pid'],
+            'name': proc.info['name'],
+            'username': proc.info['username'],
+        }, procs))
+        return procs
+
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
@@ -134,13 +143,7 @@ class MachineInfo:
 
     @classmethod
     def fetch_procs_info(cls):
-        procs_info = []
-        for proc in psutil.process_iter(['pid', 'name', 'username']):
-            procs_info.append({
-                'pid': proc.info['pid'],
-                'name': proc.info['name'],
-                'username': proc.info['username'],
-            })
+        procs_info = MachineInfo.fmt_procs_response(psutil.process_iter(['pid', 'name', 'username']))
         return procs_info
 
     @classmethod
