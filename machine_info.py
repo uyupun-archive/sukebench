@@ -27,16 +27,27 @@ class MachineInfo:
         }, disk_partitions))
 
     @staticmethod
-    def fmt_interfaces_response(logical_addrs):
-        for interface_name, interface in logical_addrs.items():
-            logical_addrs[interface_name] = list(map(lambda settings: {
-                'address_family': str(settings.family),
-                'ip_address': settings.address,
-                'netmask': settings.netmask,
-                'broadcast_address': settings.broadcast,
-                'vpn': settings.ptp,
-            }, interface))
+    def fmt_logical_addrs_response(logical_addrs):
+        for interface_name, addrs in logical_addrs.items():
+            logical_addrs[interface_name] = list(map(lambda addr: {
+                'address_family': str(addr.family),
+                'ip_address': addr.address,
+                'netmask': addr.netmask,
+                'broadcast_address': addr.broadcast,
+                'vpn': addr.ptp,
+            }, addrs))
         return logical_addrs
+
+    @staticmethod
+    def fmt_interface_stats_response(interface_stats):
+        for interface_name, stats in interface_stats.items():
+            interface_stats[interface_name] = {
+                'nic': stats.isup,
+                'duplex': stats.duplex,
+                'speed': stats.speed,
+                'mtu': stats.mtu,
+            }
+        return interface_stats
 
     @classmethod
     def fetch_cpu_info(cls):
@@ -87,17 +98,17 @@ class MachineInfo:
         asyncio.set_event_loop(asyncio.new_event_loop())
         mac_addresses = MacAddresses()
         network_info = {
-            'bytes_sent': '{:,d}'.format(psutil.net_io_counters().bytes_sent),
-            'bytes_recv': '{:,d}'.format(psutil.net_io_counters().bytes_recv),
-            'packets_sent': '{:,d}'.format(psutil.net_io_counters().packets_sent),
-            'packets_recv': '{:,d}'.format(psutil.net_io_counters().packets_recv),
-            'packets_errin': '{:,d}'.format(psutil.net_io_counters().errin),
-            'packets_errout': '{:,d}'.format(psutil.net_io_counters().errout),
-            'packets_dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
-            'packets_dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
-            'logical_addrs': MachineInfo.fmt_interfaces_response(psutil.net_if_addrs()),
+            'bytes_sent': psutil.net_io_counters().bytes_sent,
+            'bytes_recv': psutil.net_io_counters().bytes_recv,
+            'packets_sent': psutil.net_io_counters().packets_sent,
+            'packets_recv': psutil.net_io_counters().packets_recv,
+            'packets_errin': psutil.net_io_counters().errin,
+            'packets_errout': psutil.net_io_counters().errout,
+            'packets_dropin': psutil.net_io_counters().dropin,
+            'packets_dropout': psutil.net_io_counters().dropout,
+            'logical_addrs': MachineInfo.fmt_logical_addrs_response(psutil.net_if_addrs()),
             'physical_addrs': mac_addresses(),
-            'stats': psutil.net_if_stats(),
+            'interface_stats': MachineInfo.fmt_interface_stats_response(psutil.net_if_stats()),
         }
         return network_info
 
