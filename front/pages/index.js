@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import {Container, Tab, Tabs} from 'react-bootstrap';
-import {Cpu, Memory} from '../components/pages/index';
+import {Cpu, Memory, Swap} from '../components/pages/index';
 
 const cpuDummyData = {
   'use_percent': 40.6,
@@ -18,6 +18,12 @@ const memoryDummyData = {
   'total': 17.179869184,
   'available': 6.51087872,
   'used': 9.543540736
+};
+
+const swapDummyData = {
+  'total': 3.221225472,
+  'free': 1.757413376,
+  'used': 1.463812096
 };
 
 const Home = () => (
@@ -42,6 +48,7 @@ const Home = () => (
 
         <Tab eventKey="swap" title="Swap" className="p-2">
           <h3>Swap</h3>
+          <Swap data={swapDummyData} />
         </Tab>
 
         <Tab eventKey="disks" title="Disks" className="p-2">
