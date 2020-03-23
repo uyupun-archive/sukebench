@@ -1,18 +1,24 @@
 import Head from 'next/head';
 import {Container, Tab, Tabs} from 'react-bootstrap';
-import Cpu from '../components/pages/cpu';
+import {Cpu, Memory} from '../components/pages/index';
 
 const cpuDummyData = {
-  "clock_frequency": 2.4,
-  "load_average": {
-    "last_15_min": 3.0283203125,
-    "last_1_min": 2.25048828125,
-    "last_5_min": 2.65625
+  'use_percent': 40.6,
+  'load_average': {
+    'last_15_min': 3.0283203125,
+    'last_1_min': 2.25048828125,
+    'last_5_min': 2.65625
   },
-  "logical_core_count": 4,
-  "real_core_count": 2,
-  "use_percent": 40.6
+  'real_core_count': 2,
+  'logical_core_count': 4,
+  'clock_frequency': 2.4
 }
+
+const memoryDummyData = {
+  'total': 17.179869184,
+  'available': 6.51087872,
+  'used': 9.543540736
+};
 
 const Home = () => (
   <Container>
@@ -31,6 +37,7 @@ const Home = () => (
 
         <Tab eventKey="memory" title="Memory" className="p-2">
           <h3>Memory</h3>
+          <Memory data={memoryDummyData} />
         </Tab>
 
         <Tab eventKey="swap" title="Swap" className="p-2">

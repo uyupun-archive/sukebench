@@ -17,4 +17,4 @@ const Cpu = props => {
   </Table>
 };
 
-export default Cpu;
+export {Cpu};
