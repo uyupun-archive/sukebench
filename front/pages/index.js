@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import {Container, Tab, Tabs} from 'react-bootstrap';
-import {Cpu, Memory, Swap} from '../components/pages/index';
+import {Cpu, Memory, Swap, Disks} from '../components/pages/index';
 
 const cpuDummyData = {
   'use_percent': 40.6,
@@ -24,6 +24,58 @@ const swapDummyData = {
   'total': 3.221225472,
   'free': 1.757413376,
   'used': 1.463812096
+};
+
+const disksDummyData = {
+  'total': 499.963174912,
+  'free': 70.968365056,
+  'used': 10.985254912,
+  'use_percent': 13.4,
+  'partitions': [
+    {
+      'device': '/dev/disk1s5',
+      'mountpoint': '/',
+      'filesystem': 'apfs',
+      'options': [
+        "ro",
+        "local",
+        "rootfs",
+        "dovolfs",
+        "journaled",
+        "multilabel"
+      ]
+    },
+    {
+      'device': '/dev/disk1s5',
+      'mountpoint': '/',
+      'filesystem': 'apfs',
+      'options': [
+        "ro",
+        "local",
+        "rootfs",
+        "dovolfs",
+        "journaled",
+        "multilabel"
+      ]
+    },
+    {
+      'device': '/dev/disk1s5',
+      'mountpoint': '/',
+      'filesystem': 'apfs',
+      'options': [
+        "ro",
+        "local",
+        "rootfs",
+        "dovolfs",
+        "journaled",
+        "multilabel"
+      ]
+    }
+  ],
+  'read_count': 6174919,
+  'read_bytes': 440117825732608,
+  'write_count': 5558551,
+  'write_bytes': 183641661
 };
 
 const Home = () => (
@@ -53,6 +105,7 @@ const Home = () => (
 
         <Tab eventKey="disks" title="Disks" className="p-2">
           <h3>Disks</h3>
+          <Disks data={disksDummyData} />
         </Tab>
 
         <Tab eventKey="network" title="Network" className="p-2">
