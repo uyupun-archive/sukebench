@@ -49,9 +49,5 @@ def procs():
 def devices():
     return jsonify(MachineInfo.fetch_devices_info())
 
-@app.route('/api/hello')
-def hello():
-    return jsonify({'hello': 'world'})
-
 if __name__ == '__main__':
     app.run(debug=True)
