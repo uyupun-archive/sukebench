@@ -43,7 +43,7 @@ def network_connections():
 
 @app.route('/api/procs')
 def procs():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_procs_info())
 
 @app.route('/api/devices')
 def devices():
