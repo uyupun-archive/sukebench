@@ -301,11 +301,11 @@
                     <th>プロセス名</th>
                     <th>実行ユーザー</th>
                 </tr>
-                {% for proc in procs_info.procs %}
+                {% for proc in procs_info %}
                 <tr>
-                    <td>{{ proc.info.pid }}</td>
-                    <td>{{ proc.info.name }}</td>
-                    <td>{{ proc.info.username }}</td>
+                    <td>{{ proc.pid }}</td>
+                    <td>{{ proc.name }}</td>
+                    <td>{{ proc.username }}</td>
                 </tr>
                 {% endfor %}
             </table>
