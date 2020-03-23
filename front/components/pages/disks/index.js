@@ -1,6 +1,6 @@
 import {Table} from 'react-bootstrap';
-import TableRow from '../table/row';
-import TableRows from '../table/rows';
+import TableRow from '../../table/row';
+import TableRows from '../../table/rows';
 
 const Disks = props => {
   const {data} = props;
