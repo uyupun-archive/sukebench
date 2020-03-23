@@ -47,7 +47,7 @@ def procs():
 
 @app.route('/api/devices')
 def devices():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_devices_info())
 
 @app.route('/api/hello')
 def hello():

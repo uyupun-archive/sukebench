@@ -73,6 +73,17 @@ class MachineInfo:
         }, procs))
         return procs
 
+    @staticmethod
+    def fmt_users_response(users):
+        users = list(map(lambda user: {
+            'name': user.name,
+            'host': user.host,
+            'terminal': user.terminal,
+            'started_at': user.started,
+            'login_process': user.pid,
+        }, users))
+        return users
+
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
@@ -152,7 +163,7 @@ class MachineInfo:
         devices_info = {
             'platform_name': platform.system(),
             'platform_version': platform.release(),
-            'users': psutil.users(),
+            'users': MachineInfo.fmt_users_response(psutil.users()),
             'battery_percent': psutil.sensors_battery().percent,
             'battery_secleft': cls.sec2hours(psutil.sensors_battery().secsleft),
             'battery_power_plugged': psutil.sensors_battery().power_plugged,
