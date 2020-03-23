@@ -49,6 +49,21 @@ class MachineInfo:
             }
         return interface_stats
 
+    @staticmethod
+    def fmt_network_connections_response(network_connections):
+        network_connections = list(map(lambda connection: {
+            'file_descriptor': connection.fd,
+            'address_family': str(connection.family),
+            'address_type': str(connection.type),
+            'local_ip_address': connection.laddr.ip,
+            'local_port_number': connection.laddr.port,
+            'remote_ip_address': connection.raddr.ip if 'ip' in connection.raddr else None,
+            'remote_port_number': connection.raddr.port if 'port' in connection.raddr else None,
+            'status': connection.status,
+            'pid': connection.pid,
+        }, network_connections))
+        return network_connections
+
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
@@ -114,7 +129,7 @@ class MachineInfo:
 
     @classmethod
     def fetch_network_connections_info(cls):
-        network_connections_info = psutil.net_connections()
+        network_connections_info = MachineInfo.fmt_network_connections_response(psutil.net_connections())
         return network_connections_info
 
     @classmethod

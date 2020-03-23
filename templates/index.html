@@ -258,25 +258,25 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>ファイルディスクリプタ</th>
-                    <td>{{ connection.fd }}</td>
+                    <td>{{ connection.file_descriptor }}</td>
                 </tr>
                 <tr>
                     <th>アドレスファミリー</th>
-                    <td>{{ connection.family }}</td>
+                    <td>{{ connection.address_family }}</td>
                 </tr>
                 <tr>
                     <th>アドレスタイプ</th>
-                    <td>{{ connection.type }}</td>
+                    <td>{{ connection.address_type }}</td>
                 </tr>
                 <tr>
                     <th>ローカルアドレス</th>
-                    <td>IP: {{ connection.laddr.ip }} / ポート: {{ connection.laddr.port }}</td>
+                    <td>IP: {{ connection.local_ip_address }} / ポート: {{ connection.local_port_number }}</td>
                 </tr>
                 <tr>
                     <th>リモートアドレス</th>
                     <td>
-                        {% if connection.raddr %}
-                        <span>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</span>
+                        {% if connection.remote_ip_address %}
+                        <span>IP: {{ connection.remote_ip_address }} / ポート: {{ connection.remote_port_number }}</span>
                         {% else %}
                         <span>-</span>
                         {% endif %}
