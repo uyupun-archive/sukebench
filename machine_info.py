@@ -86,10 +86,10 @@ class MachineInfo:
             'used': psutil.disk_usage(path='/').used / 1_000_000_000,
             'use_percent': psutil.disk_usage(path='/').percent,
             'partitions': MachineInfo.fmt_disk_partitions_response(psutil.disk_partitions()),
-            'read_count': '{:,d}'.format(psutil.disk_io_counters().read_count),
-            'write_count': '{:,d}'.format(psutil.disk_io_counters().write_count),
-            'read_bytes': '{:,d}'.format(psutil.disk_io_counters().read_bytes),
-            'write_bytes': '{:,d}'.format(psutil.disk_io_counters().write_bytes),
+            'read_count': psutil.disk_io_counters().read_count,
+            'write_count': psutil.disk_io_counters().write_count,
+            'read_bytes': psutil.disk_io_counters().read_bytes,
+            'write_bytes': psutil.disk_io_counters().write_bytes,
         }
         return disks_info
 
