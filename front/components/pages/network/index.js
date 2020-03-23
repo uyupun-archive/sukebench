@@ -58,7 +58,7 @@ const Network = props => {
       <TableRow head={'受信'} body={receive} />
       <TableRow head={'エラー'} body={error} />
       <TableRow head={'ドロップ'} body={drop} />
-      <TableRows head={'インタフェ-ス'}>
+      <TableRows head={'インタフェース'}>
         <ul>{getInterfaces()}</ul>
       </TableRows>
     </tbody>
