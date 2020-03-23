@@ -199,50 +199,50 @@
                             <table class="table table-bordered table-striped">
                                 <tr>
                                     <th>アドレスファミリー</th>
-                                    <td>{{ addr.family }}</td>
+                                    <td>{{ addr.address_family }}</td>
                                 <tr>
-                                    <th>IPアドレス</th>
-                                    <td>{{ addr.address }}</td>
+                                    <th>IPアドレス（ユニキャスト）</th>
+                                    <td>{{ addr.ip_address }}</td>
                                 </tr>
                                 <tr>
                                     <th>ネットマスク</th>
                                     <td>{{ addr.netmask }}</td>
                                 </tr>
                                 <tr>
-                                    <th>ブロードキャスト</th>
+                                    <th>ブロードキャストアドレス</th>
                                     <td>
-                                        {% if addr.broadcast is none %}
+                                        {% if addr.broadcast_address is none %}
                                         <span>-</span>
                                         {% else %}
-                                        <span>{{ addr.broadcast }}</span>
+                                        <span>{{ addr.broadcast_address }}</span>
                                         {% endif %}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>VPN</th>
                                     <td>
-                                        {% if addr.ptp is none %}
+                                        {% if addr.vpn is none %}
                                         <span>-</span>
                                         {% else %}
-                                        <span>{{ addr.ptp }}</span>
+                                        <span>{{ addr.vpn }}</span>
                                         {% endif %}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>NIC</th>
-                                    <td>{{ network_info.stats[key].isup }}</td>
+                                    <td>{{ network_info.interface_stats[key].isup }}</td>
                                 </tr>
                                 <tr>
                                     <th>通信方式</th>
-                                    <td>{{ network_info.stats[key].duplex }}</td>
+                                    <td>{{ network_info.interface_stats[key].duplex }}</td>
                                 </tr>
                                 <tr>
                                     <th>速度</th>
-                                    <td>{{ network_info.stats[key].speed }}</td>
+                                    <td>{{ network_info.interface_stats[key].speed }}</td>
                                 </tr>
                                 <tr>
                                     <th>MTU</th>
-                                    <td>{{ network_info.stats[key].mtu }}</td>
+                                    <td>{{ network_info.interface_stats[key].mtu }}</td>
                                 </tr>
                             </table>
                             {% endfor %}
@@ -258,25 +258,25 @@
             <table class="table table-bordered table-striped">
                 <tr>
                     <th>ファイルディスクリプタ</th>
-                    <td>{{ connection.fd }}</td>
+                    <td>{{ connection.file_descriptor }}</td>
                 </tr>
                 <tr>
                     <th>アドレスファミリー</th>
-                    <td>{{ connection.family }}</td>
+                    <td>{{ connection.address_family }}</td>
                 </tr>
                 <tr>
                     <th>アドレスタイプ</th>
-                    <td>{{ connection.type }}</td>
+                    <td>{{ connection.address_type }}</td>
                 </tr>
                 <tr>
                     <th>ローカルアドレス</th>
-                    <td>IP: {{ connection.laddr.ip }} / ポート: {{ connection.laddr.port }}</td>
+                    <td>IP: {{ connection.local_ip_address }} / ポート: {{ connection.local_port_number }}</td>
                 </tr>
                 <tr>
                     <th>リモートアドレス</th>
                     <td>
-                        {% if connection.raddr %}
-                        <span>IP: {{ connection.raddr.ip }} / ポート: {{ connection.raddr.port }}</span>
+                        {% if connection.remote_ip_address %}
+                        <span>IP: {{ connection.remote_ip_address }} / ポート: {{ connection.remote_port_number }}</span>
                         {% else %}
                         <span>-</span>
                         {% endif %}

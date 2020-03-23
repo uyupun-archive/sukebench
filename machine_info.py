@@ -26,6 +26,44 @@ class MachineInfo:
             'options': partition.opts.split(','),
         }, disk_partitions))
 
+    @staticmethod
+    def fmt_logical_addrs_response(logical_addrs):
+        for interface_name, addrs in logical_addrs.items():
+            logical_addrs[interface_name] = list(map(lambda addr: {
+                'address_family': str(addr.family),
+                'ip_address': addr.address,
+                'netmask': addr.netmask,
+                'broadcast_address': addr.broadcast,
+                'vpn': addr.ptp,
+            }, addrs))
+        return logical_addrs
+
+    @staticmethod
+    def fmt_interface_stats_response(interface_stats):
+        for interface_name, stats in interface_stats.items():
+            interface_stats[interface_name] = {
+                'nic': stats.isup,
+                'duplex': stats.duplex,
+                'speed': stats.speed,
+                'mtu': stats.mtu,
+            }
+        return interface_stats
+
+    @staticmethod
+    def fmt_network_connections_response(network_connections):
+        network_connections = list(map(lambda connection: {
+            'file_descriptor': connection.fd,
+            'address_family': str(connection.family),
+            'address_type': str(connection.type),
+            'local_ip_address': connection.laddr.ip,
+            'local_port_number': connection.laddr.port,
+            'remote_ip_address': connection.raddr.ip if 'ip' in connection.raddr else None,
+            'remote_port_number': connection.raddr.port if 'port' in connection.raddr else None,
+            'status': connection.status,
+            'pid': connection.pid,
+        }, network_connections))
+        return network_connections
+
     @classmethod
     def fetch_cpu_info(cls):
         cpu_info = {
@@ -63,10 +101,10 @@ class MachineInfo:
             'used': psutil.disk_usage(path='/').used / 1_000_000_000,
             'use_percent': psutil.disk_usage(path='/').percent,
             'partitions': MachineInfo.fmt_disk_partitions_response(psutil.disk_partitions()),
-            'read_count': '{:,d}'.format(psutil.disk_io_counters().read_count),
-            'write_count': '{:,d}'.format(psutil.disk_io_counters().write_count),
-            'read_bytes': '{:,d}'.format(psutil.disk_io_counters().read_bytes),
-            'write_bytes': '{:,d}'.format(psutil.disk_io_counters().write_bytes),
+            'read_count': psutil.disk_io_counters().read_count,
+            'write_count': psutil.disk_io_counters().write_count,
+            'read_bytes': psutil.disk_io_counters().read_bytes,
+            'write_bytes': psutil.disk_io_counters().write_bytes,
         }
         return disks_info
 
@@ -75,23 +113,23 @@ class MachineInfo:
         asyncio.set_event_loop(asyncio.new_event_loop())
         mac_addresses = MacAddresses()
         network_info = {
-            'bytes_sent': '{:,d}'.format(psutil.net_io_counters().bytes_sent),
-            'bytes_recv': '{:,d}'.format(psutil.net_io_counters().bytes_recv),
-            'packets_sent': '{:,d}'.format(psutil.net_io_counters().packets_sent),
-            'packets_recv': '{:,d}'.format(psutil.net_io_counters().packets_recv),
-            'packets_errin': '{:,d}'.format(psutil.net_io_counters().errin),
-            'packets_errout': '{:,d}'.format(psutil.net_io_counters().errout),
-            'packets_dropin': '{:,d}'.format(psutil.net_io_counters().dropin),
-            'packets_dropout': '{:,d}'.format(psutil.net_io_counters().dropout),
-            'logical_addrs': psutil.net_if_addrs(),
+            'bytes_sent': psutil.net_io_counters().bytes_sent,
+            'bytes_recv': psutil.net_io_counters().bytes_recv,
+            'packets_sent': psutil.net_io_counters().packets_sent,
+            'packets_recv': psutil.net_io_counters().packets_recv,
+            'packets_errin': psutil.net_io_counters().errin,
+            'packets_errout': psutil.net_io_counters().errout,
+            'packets_dropin': psutil.net_io_counters().dropin,
+            'packets_dropout': psutil.net_io_counters().dropout,
+            'logical_addrs': MachineInfo.fmt_logical_addrs_response(psutil.net_if_addrs()),
             'physical_addrs': mac_addresses(),
-            'stats': psutil.net_if_stats(),
+            'interface_stats': MachineInfo.fmt_interface_stats_response(psutil.net_if_stats()),
         }
         return network_info
 
     @classmethod
     def fetch_network_connections_info(cls):
-        network_connections_info = psutil.net_connections()
+        network_connections_info = MachineInfo.fmt_network_connections_response(psutil.net_connections())
         return network_connections_info
 
     @classmethod
