@@ -4,8 +4,8 @@ import TableRows from '../../table/rows';
 
 const Disks = props => {
   const {data} = props;
-  const reading = `${data.read_count.toLocaleString()} 回 / ${data.read_bytes.toLocaleString()} B`;
-  const writing = `${data.write_count.toLocaleString()} 回 / ${data.write_bytes.toLocaleString()} B`;
+  const reading = `${data.read_count} 回 / ${data.read_bytes} B`;
+  const writing = `${data.write_count} 回 / ${data.write_bytes} B`;
 
   const getPartitions = () => {
     const partitions = [];

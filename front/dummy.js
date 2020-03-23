@@ -1,0 +1,378 @@
+export const cpuDummyData = {
+  'use_percent': 40.6,
+  'load_average': {
+    'last_15_min': 3.0283203125,
+    'last_1_min': 2.25048828125,
+    'last_5_min': 2.65625
+  },
+  'real_core_count': 2,
+  'logical_core_count': 4,
+  'clock_frequency': 2.4
+}
+
+export const memoryDummyData = {
+  'total': 17.179869184,
+  'available': 6.51087872,
+  'used': 9.543540736
+};
+
+export const swapDummyData = {
+  'total': 3.221225472,
+  'free': 1.757413376,
+  'used': 1.463812096
+};
+
+export const disksDummyData = {
+  'total': 499.963174912,
+  'free': 70.968365056,
+  'used': 10.985254912,
+  'use_percent': 13.4,
+  'partitions': [
+    {
+      'device': '/dev/disk1s5',
+      'mountpoint': '/',
+      'filesystem': 'apfs',
+      'options': [
+        'ro',
+        'local',
+        'rootfs',
+        'dovolfs',
+        'journaled',
+        'multilabel'
+      ]
+    },
+    {
+      'device': '/dev/disk1s5',
+      'mountpoint': '/',
+      'filesystem': 'apfs',
+      'options': [
+        'ro',
+        'local',
+        'rootfs',
+        'dovolfs',
+        'journaled',
+        'multilabel'
+      ]
+    },
+    {
+      'device': '/dev/disk1s5',
+      'mountpoint': '/',
+      'filesystem': 'apfs',
+      'options': [
+        'ro',
+        'local',
+        'rootfs',
+        'dovolfs',
+        'journaled',
+        'multilabel'
+      ]
+    }
+  ],
+  'read_count': 6174919,
+  'read_bytes': 440117825732608,
+  'write_count': 5558551,
+  'write_bytes': 183641661
+};
+
+export const networkDummyData = {
+  'bytes_recv': 14997894144,
+  'bytes_sent': 5768472576,
+  'interface_stats': {
+    'XHC0': {
+      'duplex': 0,
+      'mtu': 0,
+      'nic': false,
+      'speed': 0
+    },
+    'XHC20': {
+      'duplex': 0,
+      'mtu': 0,
+      'nic': false,
+      'speed': 0
+    },
+    'awdl0': {
+      'duplex': 0,
+      'mtu': 1484,
+      'nic': true,
+      'speed': 0
+    },
+    'bridge0': {
+      'duplex': 0,
+      'mtu': 1500,
+      'nic': true,
+      'speed': 0
+    },
+    'en0': {
+      'duplex': 0,
+      'mtu': 1500,
+      'nic': true,
+      'speed': 0
+    },
+    'en1': {
+      'duplex': 2,
+      'mtu': 1500,
+      'nic': true,
+      'speed': 0
+    },
+    'en2': {
+      'duplex': 2,
+      'mtu': 1500,
+      'nic': true,
+      'speed': 0
+    },
+    'gif0': {
+      'duplex': 0,
+      'mtu': 1280,
+      'nic': false,
+      'speed': 0
+    },
+    'llw0': {
+      'duplex': 0,
+      'mtu': 1500,
+      'nic': true,
+      'speed': 0
+    },
+    'lo0': {
+      'duplex': 0,
+      'mtu': 16384,
+      'nic': true,
+      'speed': 0
+    },
+    'p2p0': {
+      'duplex': 0,
+      'mtu': 2304,
+      'nic': true,
+      'speed': 0
+    },
+    'stf0': {
+      'duplex': 0,
+      'mtu': 1280,
+      'nic': false,
+      'speed': 0
+    },
+    'utun0': {
+      'duplex': 0,
+      'mtu': 1380,
+      'nic': true,
+      'speed': 0
+    },
+    'utun1': {
+      'duplex': 0,
+      'mtu': 2000,
+      'nic': true,
+      'speed': 0
+    }
+  },
+  'logical_addrs': {
+    'awdl0': [
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': '1e:70:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': 'fe80::1c70:ffff:ffff:ffff%awdl0',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      }
+    ],
+    'bridge0': [
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': '82:7c:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      }
+    ],
+    'en0': [
+      {
+        'address_family': 'AddressFamily.AF_INET',
+        'broadcast_address': '192.168.0.255',
+        'ip_address': '192.168.0.1',
+        'netmask': '255.255.255.0',
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': 'dc:a9:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': 'fe80::1003:ffff:ffff:ffff%en0',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': '2001:ce8:fff:ffff:ffff:ffff:ff:ffff',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': '2001:ce8:fff:ffff:ffff:ffff:ff:ffff',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      }
+    ],
+    'en1': [
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': '82:7c:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      }
+    ],
+    'en2': [
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': '82:7c:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      }
+    ],
+    'llw0': [
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': '1e:70:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': 'fe80::1c70:ffff:ffff:ffff%llw0',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      }
+    ],
+    'lo0': [
+      {
+        'address_family': 'AddressFamily.AF_INET',
+        'broadcast_address': null,
+        'ip_address': '127.0.0.1',
+        'netmask': '255.0.0.0',
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': '::1',
+        'netmask': 'ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff',
+        'vpn': null
+      },
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': 'ffff::1%lo0',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      }
+    ],
+    'p2p0': [
+      {
+        'address_family': 'AddressFamily.AF_LINK',
+        'broadcast_address': null,
+        'ip_address': '0e:a9:ff:ff:ff:ff',
+        'netmask': null,
+        'vpn': null
+      }
+    ],
+    'utun0': [
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': 'fe80::dc3a:ffff:ffff:ffff%utun0',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      }
+    ],
+    'utun1': [
+      {
+        'address_family': 'AddressFamily.AF_INET6',
+        'broadcast_address': null,
+        'ip_address': 'fe80::c41f:ffff:ffff:ffff%utun1',
+        'netmask': 'ffff:ffff:ffff:ffff::',
+        'vpn': null
+      }
+    ]
+  },
+  'packets_dropin': 0,
+  'packets_dropout': 0,
+  'packets_errin': 0,
+  'packets_errout': 0,
+  'packets_recv': 17557528,
+  'packets_sent': 12768355,
+  'physical_addrs': {
+    'XHC0': {
+      'address': null,
+      'vendor': null
+    },
+    'XHC20': {
+      'address': null,
+      'vendor': null
+    },
+    'awdl0': {
+      'address': '1e:70:ff:ff:ff:ff',
+      'vendor': null
+    },
+    'bridge0': {
+      'address': '82:7c:ff:ff:ff:ff',
+      'vendor': null
+    },
+    'en0': {
+      'address': 'dc:a9:ff:ff:ff:ff',
+      'vendor': 'Apple, Inc.'
+    },
+    'en1': {
+      'address': '82:7c:ff:ff:ff:ff',
+      'vendor': null
+    },
+    'en2': {
+      'address': '82:7c:ff:ff:ff:ff',
+      'vendor': null
+    },
+    'gif0': {
+      'address': null,
+      'vendor': null
+    },
+    'llw0': {
+      'address': '1e:70:ff:ff:ff:ff',
+      'vendor': null
+    },
+    'lo0': {
+      'address': null,
+      'vendor': null
+    },
+    'p2p0': {
+      'address': '0e:a9:ff:ff:ff:ff',
+      'vendor': null
+    },
+    'stf0': {
+      'address': null,
+      'vendor': null
+    },
+    'utun0': {
+      'address': null,
+      'vendor': null
+    },
+    'utun1': {
+      'address': null,
+      'vendor': null
+    }
+  }
+}
