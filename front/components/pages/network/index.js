@@ -6,9 +6,9 @@ const checkNull = value => {
   return value ? value : '-';
 };
 
-const getLogicalAddrs = (data, key) => {
+const getLogicalAddrs = (data) => {
   const logicalAddrs = [];
-  data.logical_addrs[key].forEach((item, index) => {
+  data.forEach((item, index) => {
     logicalAddrs.push(
       <Table key={index} striped bordered hover size="sm">
         <tbody>
@@ -17,10 +17,6 @@ const getLogicalAddrs = (data, key) => {
           <TableRow head={'ネットマスク'} body={checkNull(item.netmask)} />
           <TableRow head={'ブロードキャストアドレス'} body={checkNull(item.broadcast_address)} />
           <TableRow head={'VPN'} body={checkNull(item.vpn)} />
-          <TableRow head={'NIC'} body={checkNull(data.interface_stats[key].isup)} />
-          <TableRow head={'通信方式'} body={checkNull(data.interface_stats[key].duplex)} />
-          <TableRow head={'速度'} body={checkNull(data.interface_stats[key].speed)} />
-          <TableRow head={'MTU'} body={checkNull(data.interface_stats[key].mtu)} />
         </tbody>
       </Table>
     );
@@ -40,9 +36,13 @@ const getInterfaces = data => {
           <tbody>
             <TableRow head={'MACアドレス'} body={checkNull(data.physical_addrs[key].address)} />
             <TableRow head={'ベンダ'} body={checkNull(data.physical_addrs[key].vendor)} />
+            <TableRow head={'NIC'} body={checkNull(data.interface_stats[key].isup)} />
+            <TableRow head={'通信方式'} body={checkNull(data.interface_stats[key].duplex)} />
+            <TableRow head={'速度'} body={checkNull(data.interface_stats[key].speed)} />
+            <TableRow head={'MTU'} body={checkNull(data.interface_stats[key].mtu)} />
           </tbody>
         </Table>
-        {getLogicalAddrs(data, key)}
+        {getLogicalAddrs(data.logical_addrs[key])}
       </li>
     );
   }
