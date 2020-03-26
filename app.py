@@ -1,21 +1,11 @@
-from flask import Flask, jsonify, render_template
-from flask_bootstrap import Bootstrap
+from flask import Flask, jsonify
 from machine_info import MachineInfo
 
 app = Flask(__name__)
-bootstrap = Bootstrap(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html',
-                           cpu_info = MachineInfo.fetch_cpu_info(),
-                           memory_info = MachineInfo.fetch_memory_info(),
-                           swap_info = MachineInfo.fetch_swap_info(),
-                           disks_info = MachineInfo.fetch_disks_info(),
-                           network_info = MachineInfo.fetch_network_info(),
-                           network_connections_info = MachineInfo.fetch_network_connections_info(),
-                           procs_info = MachineInfo.fetch_procs_info(),
-                           devices_info = MachineInfo.fetch_devices_info())
+    return 'Sukebench API'
 
 @app.route('/api/cpu')
 def cpu():

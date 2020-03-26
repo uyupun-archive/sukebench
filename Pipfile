@@ -8,7 +8,6 @@ pylint = "*"
 
 [packages]
 flask = "*"
-flask-bootstrap = "*"
 psutil = "*"
 mac-vendor-lookup = "*"
 ifcfg = "*"
