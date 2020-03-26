@@ -488,3 +488,21 @@ export const processesDummyData = [
     'username': 'root'
   }
 ];
+
+export const devicesDummyData = {
+  'battery_percent': 67,
+  'battery_power_plugged': true,
+  'battery_secleft': '-1:59:58',
+  'boot_time': '2020/03/12 15:51:44',
+  'platform_name': 'Darwin',
+  'platform_version': '19.3.0',
+  'users': [
+    {
+      'host': null,
+      'login_process': 183,
+      'name': 'username',
+      'started_at': '2020/03/12 16:25:52',
+      'terminal': 'console'
+    }
+  ]
+}

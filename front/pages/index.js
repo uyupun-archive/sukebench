@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import {Container, Tab, Tabs} from 'react-bootstrap';
-import {Cpu, Memory, Swap, Disks, Network, NetworkConnections, Processes} from '../components/pages/index';
+import {Cpu, Memory, Swap, Disks, Network, NetworkConnections, Processes, Devices} from '../components/pages/index';
 import * as dummy from '../dummy';
 
 const Home = () => (
@@ -50,6 +50,7 @@ const Home = () => (
 
         <Tab eventKey='devices' title='Devices' className='p-2'>
           <h3>Devices</h3>
+          <Devices data={dummy.devicesDummyData} />
         </Tab>
 
       </Tabs>
