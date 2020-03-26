@@ -43,15 +43,11 @@ def network_connections():
 
 @app.route('/api/procs')
 def procs():
-    return jsonify({})
+    return jsonify(MachineInfo.fetch_procs_info())
 
 @app.route('/api/devices')
 def devices():
-    return jsonify({})
-
-@app.route('/api/hello')
-def hello():
-    return jsonify({'hello': 'world'})
+    return jsonify(MachineInfo.fetch_devices_info())
 
 if __name__ == '__main__':
     app.run(debug=True)

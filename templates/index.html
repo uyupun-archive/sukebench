@@ -301,11 +301,11 @@
                     <th>プロセス名</th>
                     <th>実行ユーザー</th>
                 </tr>
-                {% for proc in procs_info.procs %}
+                {% for proc in procs_info %}
                 <tr>
-                    <td>{{ proc.info.pid }}</td>
-                    <td>{{ proc.info.name }}</td>
-                    <td>{{ proc.info.username }}</td>
+                    <td>{{ proc.pid }}</td>
+                    <td>{{ proc.name }}</td>
+                    <td>{{ proc.username }}</td>
                 </tr>
                 {% endfor %}
             </table>
@@ -338,11 +338,11 @@
                             </tr>
                             <tr>
                                 <th>作成日時</th>
-                                <td>{{ user.started }}</td>
+                                <td>{{ user.started_at }}</td>
                             </tr>
                             <tr>
                                 <th>ログインプロセスID</th>
-                                <td>{{ user.pid }}</td>
+                                <td>{{ user.login_process }}</td>
                             </tr>
                         </table>
                         {% endfor %}
