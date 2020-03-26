@@ -2,22 +2,16 @@ import {Table} from 'react-bootstrap';
 import TableRow from '../../table/row';
 import TableRows from '../../table/rows';
 
-const Network = props => {
-  const {data} = props;
-  const send = `${data.bytes_sent} B / ${data.packets_sent} パケット`;
-  const receive = `${data.bytes_recv} B / ${data.packets_recv} パケット`;
-  const error = `イン: ${data.packets_errin} / アウト: ${data.packets_errout}`;
-  const drop = `イン: ${data.packets_dropin} / アウト: ${data.packets_dropout}`;
+const checkNull = value => {
+  return value ? value : '-';
+};
 
-  const checkNull = value => {
-    return value ? value : '-';
-  };
-
-  const getLogicalAddrs = key => {
-    const logicalAddrs = [];
-    for (let item of data.logical_addrs[key]) {
-      logicalAddrs.push(
-        <Table striped bordered hover size="sm">
+const getLogicalAddrs = (data, key) => {
+  const logicalAddrs = [];
+  data.logical_addrs[key].forEach((item, index) => {
+    logicalAddrs.push(
+      <Table key={index} striped bordered hover size="sm">
+        <tbody>
           <TableRow head={'アドレスファミリー'} body={checkNull(item.address_family)} />
           <TableRow head={'IPアドレス（ユニキャスト）'} body={checkNull(item.ip_address)} />
           <TableRow head={'ネットマスク'} body={checkNull(item.netmask)} />
@@ -27,30 +21,41 @@ const Network = props => {
           <TableRow head={'通信方式'} body={checkNull(data.interface_stats[key].duplex)} />
           <TableRow head={'速度'} body={checkNull(data.interface_stats[key].speed)} />
           <TableRow head={'MTU'} body={checkNull(data.interface_stats[key].mtu)} />
-        </Table>
-      );
-    }
+        </tbody>
+      </Table>
+    );
+  });
 
-    return logicalAddrs;
-  };
+  return logicalAddrs;
+};
 
-  const getInterfaces = () => {
-    const interfaces = [];
-    for (let key in data.logical_addrs) {
-      interfaces.push(
-        <>
-          <li>インタフェース: {key}</li>
-          <Table striped bordered hover size="sm">
+const getInterfaces = data => {
+  const interfaces = [];
+  let counter = 0;
+  for (let key in data.logical_addrs) {
+    interfaces.push(
+      <li key={counter++}>
+        <div>インタフェース: {key}</div>
+        <Table striped bordered hover size="sm">
+          <tbody>
             <TableRow head={'MACアドレス'} body={checkNull(data.physical_addrs[key].address)} />
             <TableRow head={'ベンダ'} body={checkNull(data.physical_addrs[key].vendor)} />
-          </Table>
-          {getLogicalAddrs(key)}
-        </>
-      );
-    }
+          </tbody>
+        </Table>
+        {getLogicalAddrs(data, key)}
+      </li>
+    );
+  }
 
-    return interfaces;
-  };
+  return interfaces;
+};
+
+const Network = props => {
+  const {data} = props;
+  const send = `${data.bytes_sent} B / ${data.packets_sent} パケット`;
+  const receive = `${data.bytes_recv} B / ${data.packets_recv} パケット`;
+  const error = `イン: ${data.packets_errin} / アウト: ${data.packets_errout}`;
+  const drop = `イン: ${data.packets_dropin} / アウト: ${data.packets_dropout}`;
 
   return <Table striped bordered hover size="sm">
     <tbody>
@@ -59,7 +64,7 @@ const Network = props => {
       <TableRow head={'エラー'} body={error} />
       <TableRow head={'ドロップ'} body={drop} />
       <TableRows head={'インタフェース'}>
-        <ul>{getInterfaces()}</ul>
+        <ul>{getInterfaces(data)}</ul>
       </TableRows>
     </tbody>
   </Table>

@@ -3,7 +3,7 @@ import TableRow from '../../table/row';
 
 const getNetworkConnections = data => {
   const networkConnections = [];
-  for (let networkConnection of data) {
+  data.forEach((networkConnection, index) => {
     const localAddress = (networkConnection.local_ip_address && networkConnection.local_port_number)
       ? `IP: ${networkConnection.local_ip_address} / ポート: ${networkConnection.local_port_number}`
       : '-';
@@ -12,7 +12,7 @@ const getNetworkConnections = data => {
       : '-';
 
     networkConnections.push(
-      <Table striped bordered hover size="sm">
+      <Table key={index} striped bordered hover size="sm">
         <tbody>
           <TableRow head={'ファイルディスクリプタ'} body={networkConnection.file_descriptor} />
           <TableRow head={'アドレスファミリー'} body={networkConnection.address_family} />
@@ -24,7 +24,7 @@ const getNetworkConnections = data => {
         </tbody>
       </Table>
     );
-  }
+  });
 
   return networkConnections;
 };
