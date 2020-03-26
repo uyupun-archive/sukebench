@@ -376,3 +376,72 @@ export const networkDummyData = {
     }
   }
 }
+
+export const networkConnectionsDummyData = [
+  {
+    'address_family': 'AddressFamily.AF_INET',
+    'address_type': 'SocketKind.SOCK_STREAM',
+    'file_descriptor': 75,
+    'local_ip_address': '127.0.0.1',
+    'local_port_number': 59238,
+    'pid': 39833,
+    'remote_ip_address': null,
+    'remote_port_number': null,
+    'status': 'ESTABLISHED'
+  },
+  {
+    'address_family': 'AddressFamily.AF_INET',
+    'address_type': 'SocketKind.SOCK_STREAM',
+    'file_descriptor': 78,
+    'local_ip_address': '192.168.0.1',
+    'local_port_number': 59233,
+    'pid': 39833,
+    'remote_ip_address': null,
+    'remote_port_number': null,
+    'status': 'ESTABLISHED'
+  },
+  {
+    'address_family': 'AddressFamily.AF_INET',
+    'address_type': 'SocketKind.SOCK_STREAM',
+    'file_descriptor': 87,
+    'local_ip_address': '192.168.0.1',
+    'local_port_number': 59207,
+    'pid': 39833,
+    'remote_ip_address': null,
+    'remote_port_number': null,
+    'status': 'ESTABLISHED'
+  },
+  {
+    'address_family': 'AddressFamily.AF_INET',
+    'address_type': 'SocketKind.SOCK_STREAM',
+    'file_descriptor': 89,
+    'local_ip_address': '192.168.0.1',
+    'local_port_number': 59208,
+    'pid': 39833,
+    'remote_ip_address': null,
+    'remote_port_number': null,
+    'status': 'CLOSE_WAIT'
+  },
+  {
+    'address_family': 'AddressFamily.AF_INET',
+    'address_type': 'SocketKind.SOCK_STREAM',
+    'file_descriptor': 90,
+    'local_ip_address': '192.168.0.1',
+    'local_port_number': 59219,
+    'pid': 39833,
+    'remote_ip_address': null,
+    'remote_port_number': null,
+    'status': 'ESTABLISHED'
+  },
+  {
+    'address_family': 'AddressFamily.AF_INET',
+    'address_type': 'SocketKind.SOCK_STREAM',
+    'file_descriptor': 93,
+    'local_ip_address': '192.168.0.1',
+    'local_port_number': 59210,
+    'pid': 39833,
+    'remote_ip_address': null,
+    'remote_port_number': null,
+    'status': 'CLOSE_WAIT'
+  }
+];
