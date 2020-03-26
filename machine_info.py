@@ -77,7 +77,7 @@ class MachineInfo:
             'name': user.name,
             'host': user.host,
             'terminal': user.terminal,
-            'started_at': user.started,
+            'started_at': datetime.datetime.fromtimestamp(user.started).strftime("%Y/%m/%d %H:%M:%S"),
             'login_process': user.pid,
         }, users))
 
