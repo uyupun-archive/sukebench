@@ -445,3 +445,46 @@ export const networkConnectionsDummyData = [
     'status': 'CLOSE_WAIT'
   }
 ];
+
+export const processesDummyData = [
+  {
+    'name': 'kernel_task',
+    'pid': 0,
+    'username': 'root'
+  },
+  {
+    'name': 'launchd',
+    'pid': 1,
+    'username': 'root'
+  },
+  {
+    'name': 'syslogd',
+    'pid': 88,
+    'username': 'root'
+  },
+  {
+    'name': 'UserEventAgent',
+    'pid': 89,
+    'username': 'root'
+  },
+  {
+    'name': 'uninstalld',
+    'pid': 92,
+    'username': 'root'
+  },
+  {
+    'name': 'kextd',
+    'pid': 93,
+    'username': 'root'
+  },
+  {
+    'name': 'fseventsd',
+    'pid': 94,
+    'username': 'root'
+  },
+  {
+    'name': 'mediaremoted',
+    'pid': 95,
+    'username': 'root'
+  }
+];

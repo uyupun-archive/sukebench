@@ -4,3 +4,4 @@ export * from './swap';
 export * from './disks';
 export * from './network';
 export * from './networkConnections'
+export * from './processes'
