@@ -1,5 +1,5 @@
 import {Table} from 'react-bootstrap';
-import TableRow from '../../table/row';
+import TableRow from '~/components/table/row';
 
 const Cpu = props => {
   const {data} = props;
