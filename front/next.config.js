@@ -12,5 +12,8 @@ module.exports = {
   webpack: config => {
     config.resolve.alias['~'] = path.resolve(__dirname);
     return config;
+  },
+  env: {
+    apiUrl: 'http://localhost:5000/api'
   }
 };
