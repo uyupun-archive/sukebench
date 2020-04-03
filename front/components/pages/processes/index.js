@@ -1,5 +1,5 @@
 import {Table} from 'react-bootstrap';
-import TableColumn from '../../table/column'
+import TableColumn from '~/components/table/column'
 
 const getProcesses = data => {
   const processes = [];
