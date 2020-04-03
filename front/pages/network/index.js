@@ -1,6 +1,6 @@
-import {Network as CNetwork} from '../../components/pages/network';
-import Layout from '../../components/layout';
-import * as dummy from '../../dummy';
+import {Network as CNetwork} from '~/components/pages/network';
+import Layout from '~/components/layout';
+import * as dummy from '~/dummy';
 
 const Network = () => {
   return <Layout activeKey={'/network'}>

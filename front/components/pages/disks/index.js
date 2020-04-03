@@ -1,6 +1,6 @@
 import {Table} from 'react-bootstrap';
-import TableRow from '../../table/row';
-import TableRows from '../../table/rows';
+import TableRow from '~/components/table/row';
+import TableRows from '~/components/table/rows';
 
 const getPartitions = data => {
   const partitions = [];

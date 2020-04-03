@@ -1,6 +1,6 @@
-import {Cpu as CCpu} from '../components/pages/cpu';
-import Layout from '../components/layout';
-import * as dummy from '../dummy';
+import {Cpu as CCpu} from '~/components/pages/cpu';
+import Layout from '~/components/layout';
+import * as dummy from '~/dummy';
 
 const Cpu = () => {
   return <Layout activeKey={'/'}>

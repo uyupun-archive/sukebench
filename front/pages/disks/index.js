@@ -1,6 +1,6 @@
-import {Disks as CDisks} from '../../components/pages/disks';
-import Layout from '../../components/layout';
-import * as dummy from '../../dummy';
+import {Disks as CDisks} from '~/components/pages/disks';
+import Layout from '~/components/layout';
+import * as dummy from '~/dummy';
 
 const Disks = () => {
   return <Layout activeKey={'/disks'}>

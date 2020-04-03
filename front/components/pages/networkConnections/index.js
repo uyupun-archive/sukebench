@@ -1,5 +1,5 @@
 import {Table} from 'react-bootstrap';
-import TableRowHalf from '../../table/rowHalf';
+import TableRowHalf from '~/components/table/rowHalf';
 
 const getNetworkConnections = data => {
   const networkConnections = [];

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import {Container} from 'react-bootstrap';
-import BaseNav from '../baseNav';
+import BaseNav from '~/components/baseNav';
 
 const Layout = props => {
   const {activeKey, children} = props;

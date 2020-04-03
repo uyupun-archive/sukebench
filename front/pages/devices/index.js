@@ -1,6 +1,6 @@
-import {Devices as CDevices} from '../../components/pages/devices';
-import Layout from '../../components/layout';
-import * as dummy from '../../dummy';
+import {Devices as CDevices} from '~/components/pages/devices';
+import Layout from '~/components/layout';
+import * as dummy from '~/dummy';
 
 const Devices = () => {
   return <Layout activeKey={'/devices'}>
