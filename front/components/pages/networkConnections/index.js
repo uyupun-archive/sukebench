@@ -1,5 +1,5 @@
 import {Table} from 'react-bootstrap';
-import TableRow from '../../table/row';
+import TableRowHalf from '../../table/rowHalf';
 
 const getNetworkConnections = data => {
   const networkConnections = [];
@@ -14,13 +14,13 @@ const getNetworkConnections = data => {
     networkConnections.push(
       <Table key={index} striped bordered hover size="sm">
         <tbody>
-          <TableRow head={'ファイルディスクリプタ'} body={networkConnection.file_descriptor} />
-          <TableRow head={'アドレスファミリー'} body={networkConnection.address_family} />
-          <TableRow head={'アドレスタイプ'} body={networkConnection.address_type} />
-          <TableRow head={'ローカルアドレス'} body={localAddress} />
-          <TableRow head={'リモートアドレス'} body={remoteAddress} />
-          <TableRow head={'ステータス'} body={networkConnection.status} />
-          <TableRow head={'プロセスID	'} body={networkConnection.pid} />
+          <TableRowHalf head={'ファイルディスクリプタ'} body={networkConnection.file_descriptor} />
+          <TableRowHalf head={'アドレスファミリー'} body={networkConnection.address_family} />
+          <TableRowHalf head={'アドレスタイプ'} body={networkConnection.address_type} />
+          <TableRowHalf head={'ローカルアドレス'} body={localAddress} />
+          <TableRowHalf head={'リモートアドレス'} body={remoteAddress} />
+          <TableRowHalf head={'ステータス'} body={networkConnection.status} />
+          <TableRowHalf head={'プロセスID	'} body={networkConnection.pid} />
         </tbody>
       </Table>
     );
