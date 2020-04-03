@@ -3,7 +3,7 @@ import Layout from '~/components/layout';
 import * as dummy from '~/dummy';
 
 const Cpu = () => {
-  return <Layout activeKey={'/'}>
+  return <Layout activeKey={'cpu'}>
     <h3>CPU</h3>
     <CCpu data={dummy.cpuDummyData} />
   </Layout>

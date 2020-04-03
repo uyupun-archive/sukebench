@@ -3,7 +3,7 @@ import Layout from '~/components/layout';
 import * as dummy from '~/dummy';
 
 const Disks = () => {
-  return <Layout activeKey={'/disks'}>
+  return <Layout activeKey={'disks'}>
     <h3>Disks</h3>
     <CDisks data={dummy.disksDummyData} />
   </Layout>

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import {Container} from 'react-bootstrap';
-import BaseNav from '~/components/baseNav';
+import Nav from '~/components/nav';
 
 const Layout = props => {
   const {activeKey, children} = props;
@@ -12,7 +12,7 @@ const Layout = props => {
 
     <main>
       <h1 className='pt-3'>Sukebench</h1>
-      <BaseNav activeKey={activeKey} />
+      <Nav activeKey={activeKey} />
       {children}
     </main>
   </Container>
