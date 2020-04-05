@@ -12,10 +12,10 @@ const getLogicalAddrs = (data) => {
     logicalAddrs.push(
       <Table key={index} striped bordered hover size="sm">
         <tbody>
-          <TableRow head={'アドレスファミリー'} body={checkNull(item.address_family)} />
-          <TableRow head={'IPアドレス（ユニキャスト）'} body={checkNull(item.ip_address)} />
-          <TableRow head={'ネットマスク'} body={checkNull(item.netmask)} />
-          <TableRow head={'ブロードキャストアドレス'} body={checkNull(item.broadcast_address)} />
+          <TableRow head={'アドレスファミリー'} body={checkNull(item.address_family)} width={50} />
+          <TableRow head={'IPアドレス（ユニキャスト）'} body={checkNull(item.ip_address)} width={50} />
+          <TableRow head={'ネットマスク'} body={checkNull(item.netmask)} width={50} />
+          <TableRow head={'ブロードキャストアドレス'} body={checkNull(item.broadcast_address)} width={50} />
           <TableRow head={'VPN'} body={checkNull(item.vpn)} />
         </tbody>
       </Table>
@@ -34,12 +34,12 @@ const getInterfaces = data => {
         <div>インタフェース: {key}</div>
         <Table striped bordered hover size="sm">
           <tbody>
-            <TableRow head={'MACアドレス'} body={checkNull(data.physical_addrs[key].address)} />
-            <TableRow head={'ベンダ'} body={checkNull(data.physical_addrs[key].vendor)} />
-            <TableRow head={'NIC'} body={checkNull(data.interface_stats[key].isup)} />
-            <TableRow head={'通信方式'} body={checkNull(data.interface_stats[key].duplex)} />
-            <TableRow head={'速度'} body={checkNull(data.interface_stats[key].speed)} />
-            <TableRow head={'MTU'} body={checkNull(data.interface_stats[key].mtu)} />
+            <TableRow head={'MACアドレス'} body={checkNull(data.physical_addrs[key].address)} width={50} />
+            <TableRow head={'ベンダ'} body={checkNull(data.physical_addrs[key].vendor)} width={50} />
+            <TableRow head={'NIC'} body={checkNull(data.interface_stats[key].isup)} width={50} />
+            <TableRow head={'通信方式'} body={checkNull(data.interface_stats[key].duplex)} width={50} />
+            <TableRow head={'速度'} body={checkNull(data.interface_stats[key].speed)} width={50} />
+            <TableRow head={'MTU'} body={checkNull(data.interface_stats[key].mtu)} width={50} />
           </tbody>
         </Table>
         {getLogicalAddrs(data.logical_addrs[key])}
