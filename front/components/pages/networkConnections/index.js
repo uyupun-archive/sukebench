@@ -31,6 +31,7 @@ const getNetworkConnections = data => {
 
 const NetworkConnections = props => {
   const {data} = props;
+  if (!data.length) return null;
 
   return getNetworkConnections(data);
 };
