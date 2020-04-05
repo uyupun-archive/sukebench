@@ -4,4 +4,11 @@ const getCpuApi = async () => {
   return await axios.get(`${process.env.apiUrl}/cpu`);
 };
 
-export {getCpuApi};
+const getMemoryApi = async () => {
+  return await axios.get(`${process.env.apiUrl}/memory`);
+};
+
+export {
+  getCpuApi,
+  getMemoryApi
+};
