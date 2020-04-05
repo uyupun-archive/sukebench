@@ -8,7 +8,12 @@ const getMemoryApi = async () => {
   return await axios.get(`${process.env.apiUrl}/memory`);
 };
 
+const getSwapApi = async () => {
+  return await axios.get(`${process.env.apiUrl}/swap`);
+};
+
 export {
   getCpuApi,
-  getMemoryApi
+  getMemoryApi,
+  getSwapApi
 };
