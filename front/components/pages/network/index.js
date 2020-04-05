@@ -52,6 +52,8 @@ const getInterfaces = data => {
 
 const Network = props => {
   const {data} = props;
+  if (!Object.keys(data).length) return null;
+
   const send = `${data.bytes_sent} B / ${data.packets_sent} パケット`;
   const receive = `${data.bytes_recv} B / ${data.packets_recv} パケット`;
   const error = `イン: ${data.packets_errin} / アウト: ${data.packets_errout}`;
