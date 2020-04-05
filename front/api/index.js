@@ -24,11 +24,16 @@ const getNetworkConApi = async () => {
   return await axios.get(`${process.env.apiUrl}/network/connections`);
 };
 
+const getProcessesApi = async () => {
+  return await axios.get(`${process.env.apiUrl}/procs`);
+};
+
 export {
   getCpuApi,
   getMemoryApi,
   getSwapApi,
   getDisksApi,
   getNetworkApi,
-  getNetworkConApi
+  getNetworkConApi,
+  getProcessesApi
 };
