@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const getCpu = async () => {
+const getCpuApi = async () => {
   return await axios.get(`${process.env.apiUrl}/cpu`);
 };
 
-export {getCpu};
+export {getCpuApi};

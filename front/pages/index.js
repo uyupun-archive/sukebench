@@ -1,17 +1,17 @@
 import {useState, useEffect} from 'react';
 import {Cpu as CpuComponent} from '~/components/pages/cpu';
 import Layout from '~/components/layout';
-import {getCpu} from '~/api';
+import {getCpuApi} from '~/api';
 
 const Cpu = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getRequest = async () => {
+    const getCpu = async () => {
       setIsLoading(true);
       try {
-        const response = await getCpu();
+        const response = await getCpuApi();
         setData(response.data);
       } catch(error) {
         console.log(error.response);
@@ -19,7 +19,7 @@ const Cpu = () => {
         setIsLoading(false);
       }
     };
-    getRequest();
+    getCpu();
   }, []);
 
   return <Layout activeKey={'cpu'}>
