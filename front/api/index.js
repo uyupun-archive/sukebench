@@ -12,8 +12,13 @@ const getSwapApi = async () => {
   return await axios.get(`${process.env.apiUrl}/swap`);
 };
 
+const getDisksApi = async () => {
+  return await axios.get(`${process.env.apiUrl}/disks`);
+};
+
 export {
   getCpuApi,
   getMemoryApi,
-  getSwapApi
+  getSwapApi,
+  getDisksApi
 };

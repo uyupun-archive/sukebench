@@ -22,6 +22,8 @@ const getPartitions = data => {
 
 const Disks = props => {
   const {data} = props;
+  if (!Object.keys(data).length) return null;
+
   const reading = `${data.read_count} 回 / ${data.read_bytes} B`;
   const writing = `${data.write_count} 回 / ${data.write_bytes} B`;
 
