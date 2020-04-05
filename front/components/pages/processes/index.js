@@ -16,6 +16,7 @@ const getProcesses = data => {
 
 const Processes = props => {
   const {data} = props;
+  if (!data.length) return null;
 
   return <Table striped bordered hover size="sm">
     <thead>

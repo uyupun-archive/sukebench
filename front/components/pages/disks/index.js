@@ -8,10 +8,10 @@ const getPartitions = data => {
     partitions.push(
       <Table key={index} striped bordered hover size="sm">
         <tbody>
-          <TableRow head={'デバイス'} body={partition.device} />
-          <TableRow head={'マウントポイント'} body={partition.mountpoint} />
-          <TableRow head={'ファイルシステム'} body={partition.filesystem} />
-          <TableRow head={'オプション'} body={partition.options.join(' ')} />
+          <TableRow head={'デバイス'} body={partition.device} width={30} />
+          <TableRow head={'マウントポイント'} body={partition.mountpoint} width={30} />
+          <TableRow head={'ファイルシステム'} body={partition.filesystem} width={30} />
+          <TableRow head={'オプション'} body={partition.options.join(' ')} width={30} />
         </tbody>
       </Table>
     );
@@ -22,6 +22,8 @@ const getPartitions = data => {
 
 const Disks = props => {
   const {data} = props;
+  if (!Object.keys(data).length) return null;
+
   const reading = `${data.read_count} 回 / ${data.read_bytes} B`;
   const writing = `${data.write_count} 回 / ${data.write_bytes} B`;
 

@@ -1,11 +1,34 @@
-import {Devices as CDevices} from '~/components/pages/devices';
+import {useState, useEffect} from 'react';
+import {Devices as DevicesComponent} from '~/components/pages/devices';
 import Layout from '~/components/layout';
-import * as dummy from '~/dummy';
+import {getDevicesApi} from '~/api';
 
 const Devices = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    const getDevices = async () => {
+      setIsLoading(true);
+      try {
+        const response = await getDevicesApi();
+        setData(response.data);
+      } catch(error) {
+        console.log(error.response);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    getDevices();
+  }, []);
+
   return <Layout activeKey={'devices'}>
     <h3>Devices</h3>
-    <CDevices data={dummy.devicesDummyData} />
+    {
+      isLoading
+        ? <p className='text-center'>Loading...</p>
+        : <DevicesComponent data={data} />
+    }
   </Layout>
 }
 

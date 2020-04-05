@@ -3,6 +3,8 @@ import TableRow from '~/components/table/row';
 
 const Cpu = props => {
   const {data} = props;
+  if (!Object.keys(data).length) return null;
+
   const loadAverage =
     `過去１分: ${data.load_average.last_1_min} / 過去５分: ${data.load_average.last_5_min} / 過去15分: ${data.load_average.last_15_min}`;
 
