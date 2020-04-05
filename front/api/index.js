@@ -28,6 +28,10 @@ const getProcessesApi = async () => {
   return await axios.get(`${process.env.apiUrl}/procs`);
 };
 
+const getDevicesApi = async () => {
+  return await axios.get(`${process.env.apiUrl}/devices`);
+};
+
 export {
   getCpuApi,
   getMemoryApi,
@@ -35,5 +39,6 @@ export {
   getDisksApi,
   getNetworkApi,
   getNetworkConApi,
-  getProcessesApi
+  getProcessesApi,
+  getDevicesApi
 };

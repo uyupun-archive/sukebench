@@ -23,6 +23,8 @@ const getUsers = data => {
 
 const Devices = props => {
   const {data} = props;
+  if (!Object.keys(data).length) return null;
+
   const battery = `${data.battery_percent} % （残り ${data.battery_secleft}）`;
 
   return <Table striped bordered hover size="sm">
