@@ -8,7 +8,7 @@ const Processes = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const getProcesses = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getProcessesApi();
@@ -18,8 +18,7 @@ const Processes = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getProcesses();
+    })();
   }, []);
 
   return <Layout activeKey={'processes'}>

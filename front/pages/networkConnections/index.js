@@ -8,7 +8,7 @@ const NetworkConnections = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const getNetworkCon = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getNetworkConApi();
@@ -18,8 +18,7 @@ const NetworkConnections = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getNetworkCon();
+    })();
   }, []);
 
   return <Layout activeKey={'networkConnections'}>

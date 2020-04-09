@@ -8,7 +8,7 @@ const Network = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getNetwork = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getNetworkApi();
@@ -18,8 +18,7 @@ const Network = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getNetwork();
+    })();
   }, []);
 
   return <Layout activeKey={'network'}>

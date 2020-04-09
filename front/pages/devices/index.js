@@ -8,7 +8,7 @@ const Devices = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getDevices = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getDevicesApi();
@@ -18,8 +18,7 @@ const Devices = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getDevices();
+    })();
   }, []);
 
   return <Layout activeKey={'devices'}>
