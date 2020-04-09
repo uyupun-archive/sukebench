@@ -8,7 +8,7 @@ const Swap = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getSwap = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getSwapApi();
@@ -18,8 +18,7 @@ const Swap = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getSwap();
+    })();
   }, []);
 
   return <Layout activeKey={'swap'}>

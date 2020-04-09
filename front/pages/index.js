@@ -8,7 +8,7 @@ const Cpu = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getCpu = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getCpuApi();
@@ -18,8 +18,7 @@ const Cpu = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getCpu();
+    })();
   }, []);
 
   return <Layout activeKey={'cpu'}>

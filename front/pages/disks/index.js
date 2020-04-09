@@ -8,7 +8,7 @@ const Disks = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getDisks = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getDisksApi();
@@ -18,8 +18,7 @@ const Disks = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getDisks();
+    })();
   }, []);
 
   return <Layout activeKey={'disks'}>

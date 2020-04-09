@@ -8,7 +8,7 @@ const Memory = () => {
   const [data, setData] = useState({});
 
   useEffect(() => {
-    const getMemory = async () => {
+    (async () => {
       setIsLoading(true);
       try {
         const response = await getMemoryApi();
@@ -18,8 +18,7 @@ const Memory = () => {
       } finally {
         setIsLoading(false);
       }
-    };
-    getMemory();
+    })();
   }, []);
 
   return <Layout activeKey={'memory'}>
