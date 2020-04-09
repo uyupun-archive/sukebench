@@ -1,17 +1,17 @@
 import {useState, useEffect} from 'react';
-import {Memory as MemoryComponent} from '~/components/pages/memory';
+import {Swap as SwapComponent} from '~/components/pages/swap';
 import Layout from '~/components/layout';
-import {getMemoryApi} from '~/api';
+import {getSwapApi} from '~/api';
 
-const Memory = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const Swap = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState({});
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
       try {
-        const response = await getMemoryApi();
+        const response = await getSwapApi();
         setData(response.data);
       } catch(error) {
         console.log(error.response);
@@ -21,14 +21,14 @@ const Memory = () => {
     })();
   }, []);
 
-  return <Layout activeKey={'memory'}>
-    <h3>Memory</h3>
+  return <Layout activeKey={'swap'}>
+    <h3>Swap</h3>
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <MemoryComponent data={data} />
+        : <SwapComponent data={data} />
     }
   </Layout>
 }
 
-export default Memory;
+export default Swap;

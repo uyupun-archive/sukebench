@@ -1,4 +1,9 @@
-const TableRows = props => {
+interface Props {
+  head: any,
+  children: any,
+}
+
+const TableRows = (props: Props) => {
   const {head, children} = props;
 
   return <tr>

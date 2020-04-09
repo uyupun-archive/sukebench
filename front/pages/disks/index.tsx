@@ -1,17 +1,17 @@
 import {useState, useEffect} from 'react';
-import {Devices as DevicesComponent} from '~/components/pages/devices';
+import {Disks as DisksComponent} from '~/components/pages/disks';
 import Layout from '~/components/layout';
-import {getDevicesApi} from '~/api';
+import {getDisksApi} from '~/api';
 
-const Devices = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const Disks = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState({});
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
       try {
-        const response = await getDevicesApi();
+        const response = await getDisksApi();
         setData(response.data);
       } catch(error) {
         console.log(error.response);
@@ -21,14 +21,14 @@ const Devices = () => {
     })();
   }, []);
 
-  return <Layout activeKey={'devices'}>
-    <h3>Devices</h3>
+  return <Layout activeKey={'disks'}>
+    <h3>Disks</h3>
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <DevicesComponent data={data} />
+        : <DisksComponent data={data} />
     }
   </Layout>
 }
 
-export default Devices;
+export default Disks;

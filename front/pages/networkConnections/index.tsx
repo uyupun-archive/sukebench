@@ -4,8 +4,8 @@ import Layout from '~/components/layout';
 import {getNetworkConApi} from '~/api';
 
 const NetworkConnections = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<any[]>([]);
 
   useEffect(() => {
     (async () => {

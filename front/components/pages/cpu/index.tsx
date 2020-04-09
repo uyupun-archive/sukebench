@@ -1,7 +1,11 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 
-const Cpu = props => {
+interface Props {
+  data: any
+}
+
+const Cpu = (props: Props) => {
   const {data} = props;
   if (!Object.keys(data).length) return null;
 

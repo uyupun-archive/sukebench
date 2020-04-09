@@ -2,11 +2,15 @@ import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 import TableRows from '~/components/table/rows';
 
+interface Props {
+  data: any
+}
+
 const checkNull = value => {
   return value ? value : '-';
 };
 
-const getLogicalAddrs = (data) => {
+const getLogicalAddrs = data => {
   const logicalAddrs = [];
   data.forEach((item, index) => {
     logicalAddrs.push(
@@ -50,7 +54,7 @@ const getInterfaces = data => {
   return interfaces;
 };
 
-const Network = props => {
+const Network = (props: Props) => {
   const {data} = props;
   if (!Object.keys(data).length) return null;
 

@@ -1,6 +1,10 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 
+interface Props {
+  data: any[]
+}
+
 const getNetworkConnections = data => {
   const networkConnections = [];
   data.forEach((networkConnection, index) => {
@@ -29,11 +33,15 @@ const getNetworkConnections = data => {
   return networkConnections;
 };
 
-const NetworkConnections = props => {
+const NetworkConnections = (props: Props) => {
   const {data} = props;
   if (!data.length) return null;
 
-  return getNetworkConnections(data);
+  return <>
+    {
+      getNetworkConnections(data)
+    }
+  </>;
 };
 
 export {NetworkConnections};

@@ -2,6 +2,10 @@ import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 import TableRows from '~/components/table/rows';
 
+interface Props {
+  data: any
+}
+
 const getUsers = data => {
   const users = [];
   data.forEach((user, index) => {
@@ -21,7 +25,7 @@ const getUsers = data => {
   return users;
 };
 
-const Devices = props => {
+const Devices = (props: Props) => {
   const {data} = props;
   if (!Object.keys(data).length) return null;
 

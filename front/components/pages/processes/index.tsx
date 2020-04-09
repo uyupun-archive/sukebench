@@ -1,5 +1,9 @@
 import {Table} from 'react-bootstrap';
-import TableColumn from '~/components/table/column'
+import TableColumn from '~/components/table/column';
+
+interface Props {
+  data: any[]
+}
 
 const getProcesses = data => {
   const processes = [];
@@ -14,7 +18,7 @@ const getProcesses = data => {
   return processes;
 };
 
-const Processes = props => {
+const Processes = (props: Props) => {
   const {data} = props;
   if (!data.length) return null;
 

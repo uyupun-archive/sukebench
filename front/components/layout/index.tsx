@@ -2,7 +2,12 @@ import Head from 'next/head';
 import {Container} from 'react-bootstrap';
 import Nav from '~/components/nav';
 
-const Layout = props => {
+interface Props {
+  activeKey: string,
+  children: any
+}
+
+const Layout = (props: Props) => {
   const {activeKey, children} = props;
 
   return <Container>

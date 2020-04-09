@@ -1,6 +1,10 @@
 import Link from 'next/link';
 
-const Nav = props => {
+interface Props {
+  activeKey: string
+}
+
+const Nav = (props: Props) => {
   const {activeKey} = props;
 
   return <ul className="nav nav-tabs mb-2">

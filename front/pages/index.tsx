@@ -4,7 +4,7 @@ import Layout from '~/components/layout';
 import {getCpuApi} from '~/api';
 
 const Cpu = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [data, setData] = useState({});
 
   useEffect(() => {
