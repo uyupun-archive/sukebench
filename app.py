@@ -37,6 +37,10 @@ def network_connections():
 def procs():
     return jsonify(MachineInfo.fetch_procs_info())
 
+@app.route('/api/proc/<pid>')
+def proc(pid=1):
+    return jsonify(MachineInfo.fetch_proc_info())
+
 @app.route('/api/devices')
 def devices():
     return jsonify(MachineInfo.fetch_devices_info())

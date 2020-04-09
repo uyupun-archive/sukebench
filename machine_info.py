@@ -72,6 +72,29 @@ class MachineInfo:
         }, procs))
 
     @staticmethod
+    def fmt_proc(proc):
+        return {
+            'pid': proc.pid,
+            'ppid': proc.ppid(),
+            'name': proc.name(),
+            'exe': proc.exe(),
+            'cmd': proc.cmdline(),
+            'env': proc.environ(),
+            'created_at': datetime.datetime.fromtimestamp(proc.create_time()).strftime("%Y/%m/%d %H:%M:%S"),
+            'status': proc.status(),
+            'cwd': proc.cwd(),
+            'username': proc.username(),
+            'terminal': proc.terminal(),
+            'nice': proc.nice(),
+            'ctx_switche_num': proc.num_ctx_switches(),
+            'file_descriptor_num': proc.num_fds(),
+            'thread_num': proc.num_threads(),
+            'cpu_percent': proc.cpu_percent(interval=None),
+            'memory': proc.memory_info(),
+            'connections': proc.connections(),
+        }
+
+    @staticmethod
     def fmt_devices_users(users):
         return list(map(lambda user: {
             'name': user.name,
@@ -146,6 +169,10 @@ class MachineInfo:
     @classmethod
     def fetch_procs_info(cls):
         return MachineInfo.fmt_procs(psutil.process_iter(['pid', 'name', 'username']))
+
+    @classmethod
+    def fetch_proc_info(cls, pid=1):
+        return MachineInfo.fmt_proc(psutil.Process(pid))
 
     @classmethod
     def fetch_devices_info(cls):
