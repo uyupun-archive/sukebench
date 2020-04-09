@@ -3,6 +3,7 @@ import TableRow from '~/components/table/row';
 
 const Swap = props => {
   const {data} = props;
+  if (!Object.keys(data).length) return null;
 
   return <Table striped bordered hover size="sm">
     <tbody>

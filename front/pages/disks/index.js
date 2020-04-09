@@ -1,11 +1,33 @@
-import {Disks as CDisks} from '~/components/pages/disks';
+import {useState, useEffect} from 'react';
+import {Disks as DisksComponent} from '~/components/pages/disks';
 import Layout from '~/components/layout';
-import * as dummy from '~/dummy';
+import {getDisksApi} from '~/api';
 
 const Disks = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    (async () => {
+      setIsLoading(true);
+      try {
+        const response = await getDisksApi();
+        setData(response.data);
+      } catch(error) {
+        console.log(error.response);
+      } finally {
+        setIsLoading(false);
+      }
+    })();
+  }, []);
+
   return <Layout activeKey={'disks'}>
     <h3>Disks</h3>
-    <CDisks data={dummy.disksDummyData} />
+    {
+      isLoading
+        ? <p className='text-center'>Loading...</p>
+        : <DisksComponent data={data} />
+    }
   </Layout>
 }
 
