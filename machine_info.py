@@ -72,12 +72,19 @@ class MachineInfo:
         }, procs))
 
     @staticmethod
-    def fmt_proc_memory(memories):
+    def fmt_proc_memories(memories):
         return {
             'rss': memories.rss,
             'vms': memories.vms,
             'pfaults': memories.pfaults,
             'pageins': memories.pageins,
+        }
+
+    @staticmethod
+    def fmt_proc_ctx_switch_num(ctx_switch_num):
+        return {
+            'voluntary': ctx_switch_num.voluntary,
+            'involuntary': ctx_switch_num.involuntary,
         }
 
     @staticmethod
@@ -172,11 +179,11 @@ class MachineInfo:
             'username': proc.username(),
             'terminal': proc.terminal(),
             'nice': proc.nice(),
-            'ctx_switche_num': proc.num_ctx_switches(),
+            'ctx_switch_num': MachineInfo.fmt_proc_ctx_switch_num(proc.num_ctx_switches()),
             'file_descriptor_num': proc.num_fds(),
             'thread_num': proc.num_threads(),
             'cpu_percent': proc.cpu_percent(interval=None),
-            'memories': MachineInfo.fmt_proc_memory(proc.memory_info()),
+            'memories': MachineInfo.fmt_proc_memories(proc.memory_info()),
             'connections': proc.connections(),
         }
 
