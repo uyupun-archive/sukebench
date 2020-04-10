@@ -88,6 +88,19 @@ class MachineInfo:
         }
 
     @staticmethod
+    def fmt_proc_connections(connections):
+        return list(map(lambda connection: {
+            'file_descriptor': connection.fd,
+            'address_family': str(connection.family),
+            'address_type': str(connection.type),
+            'local_ip_address': connection.laddr.ip,
+            'local_port_number': connection.laddr.port,
+            'remote_ip_address': connection.raddr.ip if 'ip' in connection.raddr else None,
+            'remote_port_number': connection.raddr.port if 'port' in connection.raddr else None,
+            'status': connection.status,
+        }, connections))
+
+    @staticmethod
     def fmt_devices_users(users):
         return list(map(lambda user: {
             'name': user.name,
@@ -184,7 +197,7 @@ class MachineInfo:
             'thread_num': proc.num_threads(),
             'cpu_percent': proc.cpu_percent(interval=None),
             'memories': MachineInfo.fmt_proc_memories(proc.memory_info()),
-            'connections': proc.connections(),
+            'connections': MachineInfo.fmt_proc_connections(proc.connections()),
         }
 
     @classmethod
