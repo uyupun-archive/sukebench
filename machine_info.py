@@ -72,26 +72,12 @@ class MachineInfo:
         }, procs))
 
     @staticmethod
-    def fmt_proc(proc):
+    def fmt_proc_memory(memories):
         return {
-            'pid': proc.pid,
-            'ppid': proc.ppid(),
-            'name': proc.name(),
-            'exe': proc.exe(),
-            'cmd': proc.cmdline(),
-            'env': proc.environ(),
-            'created_at': datetime.datetime.fromtimestamp(proc.create_time()).strftime("%Y/%m/%d %H:%M:%S"),
-            'status': proc.status(),
-            'cwd': proc.cwd(),
-            'username': proc.username(),
-            'terminal': proc.terminal(),
-            'nice': proc.nice(),
-            'ctx_switche_num': proc.num_ctx_switches(),
-            'file_descriptor_num': proc.num_fds(),
-            'thread_num': proc.num_threads(),
-            'cpu_percent': proc.cpu_percent(interval=None),
-            'memory': proc.memory_info(),
-            'connections': proc.connections(),
+            'rss': memories.rss,
+            'vms': memories.vms,
+            'pfaults': memories.pfaults,
+            'pageins': memories.pageins,
         }
 
     @staticmethod
@@ -172,7 +158,27 @@ class MachineInfo:
 
     @classmethod
     def fetch_proc_info(cls, pid=1):
-        return MachineInfo.fmt_proc(psutil.Process(pid))
+        proc = psutil.Process(pid)
+        return {
+            'pid': proc.pid,
+            'ppid': proc.ppid(),
+            'name': proc.name(),
+            'exe': proc.exe(),
+            'cmd': proc.cmdline(),
+            'env': proc.environ(),
+            'created_at': datetime.datetime.fromtimestamp(proc.create_time()).strftime("%Y/%m/%d %H:%M:%S"),
+            'status': proc.status(),
+            'cwd': proc.cwd(),
+            'username': proc.username(),
+            'terminal': proc.terminal(),
+            'nice': proc.nice(),
+            'ctx_switche_num': proc.num_ctx_switches(),
+            'file_descriptor_num': proc.num_fds(),
+            'thread_num': proc.num_threads(),
+            'cpu_percent': proc.cpu_percent(interval=None),
+            'memories': MachineInfo.fmt_proc_memory(proc.memory_info()),
+            'connections': proc.connections(),
+        }
 
     @classmethod
     def fetch_devices_info(cls):
