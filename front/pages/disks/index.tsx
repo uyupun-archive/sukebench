@@ -2,10 +2,15 @@ import {useState, useEffect} from 'react';
 import {Disks as DisksComponent} from '~/components/pages/disks';
 import Layout from '~/components/layout';
 import {getDisksApi} from '~/api';
+import {IDisks} from "~/interfaces";
+
+const getDisksComponent = (data: IDisks) => {
+  return data ? <DisksComponent data={data} /> : null;
+};
 
 const Disks = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IDisks>();
 
   useEffect(() => {
     (async () => {
@@ -26,9 +31,9 @@ const Disks = () => {
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <DisksComponent data={data} />
+        : getDisksComponent(data)
     }
   </Layout>
-}
+};
 
 export default Disks;

@@ -2,10 +2,15 @@ import {useState, useEffect} from 'react';
 import {Swap as SwapComponent} from '~/components/pages/swap';
 import Layout from '~/components/layout';
 import {getSwapApi} from '~/api';
+import {ISwap} from "~/interfaces";
+
+const getCpuComponent = (data: ISwap) => {
+  return data ? <SwapComponent data={data} /> : null;
+};
 
 const Swap = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<ISwap>();
 
   useEffect(() => {
     (async () => {
@@ -26,9 +31,9 @@ const Swap = () => {
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <SwapComponent data={data} />
+        : getCpuComponent(data)
     }
   </Layout>
-}
+};
 
 export default Swap;

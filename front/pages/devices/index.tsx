@@ -2,10 +2,15 @@ import {useState, useEffect} from 'react';
 import {Devices as DevicesComponent} from '~/components/pages/devices';
 import Layout from '~/components/layout';
 import {getDevicesApi} from '~/api';
+import {IDevices} from "~/interfaces";
+
+const getDevicesComponent = (data: IDevices) => {
+  return data ? <DevicesComponent data={data} /> : null;
+};
 
 const Devices = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IDevices>();
 
   useEffect(() => {
     (async () => {
@@ -26,9 +31,9 @@ const Devices = () => {
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <DevicesComponent data={data} />
+        : getDevicesComponent(data)
     }
   </Layout>
-}
+};
 
 export default Devices;

@@ -1,4 +1,11 @@
-const TableRows = props => {
+import * as React from "react";
+
+interface Props {
+  head: string;
+  children: React.ReactNode;
+}
+
+const TableRows = (props: Props) => {
   const {head, children} = props;
 
   return <tr>

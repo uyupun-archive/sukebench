@@ -2,10 +2,15 @@ import {useState, useEffect} from 'react';
 import {Memory as MemoryComponent} from '~/components/pages/memory';
 import Layout from '~/components/layout';
 import {getMemoryApi} from '~/api';
+import {IMemory} from "~/interfaces";
+
+const getMemoryComponent = (data: IMemory) => {
+  return data ? <MemoryComponent data={data} /> : null;
+};
 
 const Memory = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState({});
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [data, setData] = useState<IMemory>();
 
   useEffect(() => {
     (async () => {
@@ -26,9 +31,9 @@ const Memory = () => {
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <MemoryComponent data={data} />
+        : getMemoryComponent(data)
     }
   </Layout>
-}
+};
 
 export default Memory;

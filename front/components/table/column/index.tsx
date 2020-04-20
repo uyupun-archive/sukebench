@@ -1,3 +1,7 @@
+interface Props {
+  body: string[];
+}
+
 const getTableColumn = body => {
   const columns = [];
   let counter = 0;
@@ -10,10 +14,14 @@ const getTableColumn = body => {
   return columns;
 };
 
-const TableColumn = props => {
+const TableColumn = (props: Props) => {
   const {body} = props;
 
-  return getTableColumn(body);
+  return <>
+    {
+      getTableColumn(body)
+    }
+  </>;
 };
 
 export default TableColumn;
