@@ -2,10 +2,15 @@ import {useState, useEffect} from 'react';
 import {NetworkConnections as NetworkConComponent} from '~/components/pages/networkConnections';
 import Layout from '~/components/layout';
 import {getNetworkConApi} from '~/api';
+import {INetworkCon} from "~/interfaces";
+
+const getNetworkConComponent = (data: INetworkCon[]) => {
+  return data ? <NetworkConComponent data={data} /> : null;
+};
 
 const NetworkConnections = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<INetworkCon[]>([]);
 
   useEffect(() => {
     (async () => {
@@ -26,9 +31,9 @@ const NetworkConnections = () => {
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <NetworkConComponent data={data} />
+        : getNetworkConComponent(data)
     }
   </Layout>
-}
+};
 
 export default NetworkConnections;

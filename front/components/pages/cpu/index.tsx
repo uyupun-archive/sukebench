@@ -1,13 +1,13 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
+import {ICpu} from "~/interfaces";
 
 interface Props {
-  data: any
+  data: ICpu;
 }
 
 const Cpu = (props: Props) => {
   const {data} = props;
-  if (!Object.keys(data).length) return null;
 
   const loadAverage =
     `過去１分: ${data.load_average.last_1_min} / 過去５分: ${data.load_average.last_5_min} / 過去15分: ${data.load_average.last_15_min}`;

@@ -2,10 +2,15 @@ import {useState, useEffect} from 'react';
 import {Cpu as CpuComponent} from '~/components/pages/cpu';
 import Layout from '~/components/layout';
 import {getCpuApi} from '~/api';
+import {ICpu} from "~/interfaces";
+
+const getCpuComponent = (data: ICpu) => {
+  return data ? <CpuComponent data={data} /> : null;
+};
 
 const Cpu = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [data, setData] = useState({});
+  const [data, setData] = useState<ICpu>();
 
   useEffect(() => {
     (async () => {
@@ -26,9 +31,9 @@ const Cpu = () => {
     {
       isLoading
         ? <p className='text-center'>Loading...</p>
-        : <CpuComponent data={data} />
+        : getCpuComponent(data)
     }
   </Layout>
-}
+};
 
 export default Cpu;

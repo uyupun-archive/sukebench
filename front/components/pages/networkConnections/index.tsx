@@ -1,8 +1,9 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
+import {INetworkCon} from "~/interfaces";
 
 interface Props {
-  data: any[]
+  data: INetworkCon[];
 }
 
 const getNetworkConnections = data => {
@@ -35,7 +36,6 @@ const getNetworkConnections = data => {
 
 const NetworkConnections = (props: Props) => {
   const {data} = props;
-  if (!data.length) return null;
 
   return <>
     {

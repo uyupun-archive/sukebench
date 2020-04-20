@@ -1,9 +1,10 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 import TableRows from '~/components/table/rows';
+import {IDisks} from "~/interfaces";
 
 interface Props {
-  data: any
+  data: IDisks;
 }
 
 const getPartitions = data => {
@@ -26,7 +27,6 @@ const getPartitions = data => {
 
 const Disks = (props: Props) => {
   const {data} = props;
-  if (!Object.keys(data).length) return null;
 
   const reading = `${data.read_count} 回 / ${data.read_bytes} B`;
   const writing = `${data.write_count} 回 / ${data.write_bytes} B`;

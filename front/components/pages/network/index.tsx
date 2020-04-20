@@ -1,9 +1,10 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 import TableRows from '~/components/table/rows';
+import {INetwork} from "~/interfaces";
 
 interface Props {
-  data: any
+  data: INetwork;
 }
 
 const checkNull = value => {
@@ -40,7 +41,7 @@ const getInterfaces = data => {
           <tbody>
             <TableRow head={'MACアドレス'} body={checkNull(data.physical_addrs[key].address)} width={50} />
             <TableRow head={'ベンダ'} body={checkNull(data.physical_addrs[key].vendor)} width={50} />
-            <TableRow head={'NIC'} body={checkNull(data.interface_stats[key].isup)} width={50} />
+            <TableRow head={'NIC'} body={data.interface_stats[key].nic ? "有効" : "無効"} width={50} />
             <TableRow head={'通信方式'} body={checkNull(data.interface_stats[key].duplex)} width={50} />
             <TableRow head={'速度'} body={checkNull(data.interface_stats[key].speed)} width={50} />
             <TableRow head={'MTU'} body={checkNull(data.interface_stats[key].mtu)} width={50} />
@@ -56,7 +57,6 @@ const getInterfaces = data => {
 
 const Network = (props: Props) => {
   const {data} = props;
-  if (!Object.keys(data).length) return null;
 
   const send = `${data.bytes_sent} B / ${data.packets_sent} パケット`;
   const receive = `${data.bytes_recv} B / ${data.packets_recv} パケット`;

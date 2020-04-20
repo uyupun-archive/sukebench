@@ -1,8 +1,9 @@
 import {Table} from 'react-bootstrap';
 import TableColumn from '~/components/table/column';
+import {IProcesses} from "~/interfaces";
 
 interface Props {
-  data: any[]
+  data: IProcesses[];
 }
 
 const getProcesses = data => {
@@ -20,7 +21,6 @@ const getProcesses = data => {
 
 const Processes = (props: Props) => {
   const {data} = props;
-  if (!data.length) return null;
 
   return <Table striped bordered hover size="sm">
     <thead>

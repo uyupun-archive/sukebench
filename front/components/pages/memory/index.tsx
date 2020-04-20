@@ -1,13 +1,13 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
+import {IMemory} from "~/interfaces";
 
 interface Props {
-  data: any
+  data: IMemory;
 }
 
 const Memory = (props: Props) => {
   const {data} = props;
-  if (!Object.keys(data).length) return null;
 
   return <Table striped bordered hover size="sm">
     <tbody>

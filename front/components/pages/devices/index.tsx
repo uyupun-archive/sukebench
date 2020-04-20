@@ -1,9 +1,10 @@
 import {Table} from 'react-bootstrap';
 import TableRow from '~/components/table/row';
 import TableRows from '~/components/table/rows';
+import {IDevices} from "~/interfaces";
 
 interface Props {
-  data: any
+  data: IDevices;
 }
 
 const getUsers = data => {
@@ -27,7 +28,6 @@ const getUsers = data => {
 
 const Devices = (props: Props) => {
   const {data} = props;
-  if (!Object.keys(data).length) return null;
 
   const battery = `${data.battery_percent} % （残り ${data.battery_secleft}）`;
 
