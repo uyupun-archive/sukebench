@@ -1,10 +1,11 @@
+import * as React from "react";
 import Head from 'next/head';
 import {Container} from 'react-bootstrap';
 import Nav from '~/components/nav';
 
 interface Props {
-  activeKey: string,
-  children: any
+  activeKey: string;
+  children: React.ReactNode;
 }
 
 const Layout = (props: Props) => {

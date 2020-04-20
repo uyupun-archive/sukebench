@@ -1,7 +1,9 @@
+import * as React from "react";
+
 interface Props {
-  head: any,
-  body: any,
-  width?: any
+  head: string;
+  body: React.ReactNode;
+  width?: number;
 }
 
 const TableRow = (props: Props) => {

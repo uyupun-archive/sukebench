@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 interface Props {
-  activeKey: string
+  activeKey: string;
 }
 
 const Nav = (props: Props) => {

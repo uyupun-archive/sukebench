@@ -1,6 +1,8 @@
+import * as React from "react";
+
 interface Props {
-  head: any,
-  children: any,
+  head: string;
+  children: React.ReactNode;
 }
 
 const TableRows = (props: Props) => {

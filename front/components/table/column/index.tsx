@@ -1,5 +1,5 @@
 interface Props {
-  body: any
+  body: string[];
 }
 
 const getTableColumn = body => {
